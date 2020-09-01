@@ -13,7 +13,7 @@ export default function ProductCard({
   id,
 }) {
   const { cart, setCart, products } = useContext(ProductsContext);
-  const cartItemsAmount = getCartItemsCount(cart);
+  // const cartItemsAmount = getCartItemsCount(cart);
 
   return (
     <div className="col-md-4 text-center mb-2">

@@ -6,3 +6,43 @@
     top: 0;
   }
 }
+
+.cart-dropdown-container {
+  position: absolute;
+  right: 10px;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+  z-index: 5;
+  
+
+  .cart-items-container {
+    height: 280px;
+    overflow-y: scroll;
+
+    .cart-item-container {
+      display: flex;
+      justify-content: space-around;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      img {
+        width: 30%;
+      }
+    }
+  }
+}
+
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 20;
+}
