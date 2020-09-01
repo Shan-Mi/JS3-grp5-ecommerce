@@ -7,7 +7,7 @@ import useFetch from "../components/useFetch";
 export const ProductsContext = createContext();
 
 const GlobalContext = ({ children }) => {
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState([]);
   const [products, reviews, couponCodes, isLoading] = useFetch(
     "https://mock-data-api.firebaseio.com/e-commerce.json",
     []

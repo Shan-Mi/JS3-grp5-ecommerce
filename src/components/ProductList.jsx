@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 export default function ProductList() {
   const ProductsData = useContext(ProductsContext);
   const { products } = ProductsData;
-
+  console.log(products);
   products && console.log(Object.entries(products));
 
   return (
@@ -27,8 +27,7 @@ export default function ProductList() {
               price={price}
               description={description}
               imgURL={imgURL}
-              imgAlt={imgAlt}
-            ></ProductCard>
+              imgAlt={imgAlt}></ProductCard>
           );
         })}
     </div>
