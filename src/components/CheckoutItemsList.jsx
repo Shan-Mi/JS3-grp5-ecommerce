@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProductsContext } from "../contexts/GlobalContext";
 
 const checkoutItems = {
   16065: {
@@ -69,9 +70,32 @@ const checkoutItems = {
 };
 
 export default function CheckoutItemsList() {
+  const ProductsData = useContext(ProductsContext);
+  const { cart } = ProductsData; // using dummy data just for now
+  /*  const cart = checkoutItems; */ cart && console.log(Object.entries(cart));
+
+  function renderTableRows() {
+    return (
+      cart &&
+      Object.entries(cart).map((product, index) => {
+        const key = product[1].id;
+        const name = product[1].name;
+        const price = product[1].price;
+
+        return (
+          <tr key={key}>
+            <th scope="row">{index + 1}</th>
+            <td>{name}</td>
+            <td>{price} SEK</td>
+          </tr>
+        );
+      })
+    );
+  }
+
   return (
     <div>
-      <table class="table table-sm">
+      <table className="table table-sm table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -80,25 +104,7 @@ export default function CheckoutItemsList() {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          {/* <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr> */}
-        </tbody>
+        <tbody>{cart && renderTableRows()}</tbody>
       </table>
     </div>
   );
