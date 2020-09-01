@@ -9,7 +9,7 @@ export default function ProductList() {
   products && console.log(Object.entries(products));
 
   return (
-    <div>
+    <div className="row">
       {products &&
         Object.entries(products).map((product) => {
           const key = product[1].id;

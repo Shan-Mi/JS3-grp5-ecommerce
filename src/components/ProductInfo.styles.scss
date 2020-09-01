@@ -1,3 +1,35 @@
-.product-detail-img {
-  width: 250px;
+.product-detail-container {
+  display: flex;
+  margin-top: 3rem;
+  position: relative;
+
+  .product-detail-image {
+    flex-basis: 50%;
+
+    .product-detail-img {
+      // width: 250px;
+      max-width: 100%;
+    }
+  }
+
+  .product-detail-info {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding-left: 3rem;
+
+    span {
+      font-size: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 4rem;
+    }
+    h5 {
+      margin-bottom: 1rem;
+    }
+  }
 }
