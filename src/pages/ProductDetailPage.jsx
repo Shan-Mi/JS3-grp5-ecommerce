@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ProductDetailPage() {
-  return <div></div>;
+  return <div>This is detail page</div>;
 }
 
 // Länka in ProductInfo och ProductReviews
