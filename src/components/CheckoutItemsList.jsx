@@ -75,9 +75,9 @@ export default function CheckoutItemsList() {
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -87,7 +87,7 @@ export default function CheckoutItemsList() {
             <td>Otto</td>
             <td>@mdo</td>
           </tr>
-          <tr>
+          {/* <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
@@ -97,7 +97,7 @@ export default function CheckoutItemsList() {
             <th scope="row">3</th>
             <td colspan="2">Larry the Bird</td>
             <td>@twitter</td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>
