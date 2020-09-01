@@ -3,7 +3,7 @@ import useFetch from "../components/useFetch";
 
 // should we write like this: createContext({})??
 //maybe then we don't need to destructure data out??
-export const ProductssContext = createContext();
+export const ProductsContext = createContext();
 
 const GlobalContext = ({ children }) => {
   const [products, reviews, couponCodes, isLoading] = useFetch(
@@ -12,10 +12,10 @@ const GlobalContext = ({ children }) => {
   ); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <ProductssContext.Provider
+    <ProductsContext.Provider
       value={{ products, reviews, couponCodes, isLoading }}>
       {children}
-    </ProductssContext.Provider>
+    </ProductsContext.Provider>
   );
 };
 
