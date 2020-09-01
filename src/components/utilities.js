@@ -46,3 +46,9 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       : cartItem
   );
 };
+
+export const getCartItemsCount = (cartItems) => {
+  return cartItems
+    .map((cartItem) => cartItem.quantity)
+    .reduce((sum, init) => sum + init, 0);
+};

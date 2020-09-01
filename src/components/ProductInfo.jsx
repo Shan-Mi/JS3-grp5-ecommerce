@@ -17,7 +17,7 @@ const ProductInfo = ({ isLoading, product }) => {
 
   const { cart, setCart, products } = useContext(ProductsContext);
 
-  // cart: an object that stores all items
+  // cart: an array that stores all items
   // setCart: this id-item count +1, check stock status, conditional disable btn.
 
   return (

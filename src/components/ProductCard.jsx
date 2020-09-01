@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // import BtnAddToCart from './BtnAddToCart'
 import { ProductsContext } from "../contexts/GlobalContext";
-import { addItemToCart, removeItemFromCart } from "./utilities";
+import { addItemToCart, removeItemFromCart, getCartItemsCount } from "./utilities";
 
 export default function ProductCard({
   imgURL,
@@ -13,6 +13,8 @@ export default function ProductCard({
   id,
 }) {
   const { cart, setCart, products } = useContext(ProductsContext);
+  const cartItemsAmount = getCartItemsCount(cart);
+
   return (
     <div className="col-md-4 text-center mb-2">
       <div className="card">
@@ -29,7 +31,8 @@ export default function ProductCard({
           <button
             className="btn btn-primary"
             onClick={() => {
-              setCart(addItemToCart(cart, products[id]));
+              setCart(addItemToCart(cart, products[id]),
+              );
             }}>
             Add to Cart
           </button>{" "}
