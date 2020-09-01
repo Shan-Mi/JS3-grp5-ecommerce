@@ -1,4 +1,5 @@
-import React, { createContext } from "react";
+// här lagras alla produkter som kunden lägger i cart
+import React, { createContext, useState } from "react";
 import useFetch from "../components/useFetch";
 
 // should we write like this: createContext({})??
@@ -6,6 +7,7 @@ import useFetch from "../components/useFetch";
 export const ProductsContext = createContext();
 
 const GlobalContext = ({ children }) => {
+  const [cart, setCart] = useState({});
   const [products, reviews, couponCodes, isLoading] = useFetch(
     "https://mock-data-api.firebaseio.com/e-commerce.json",
     []
@@ -13,7 +15,7 @@ const GlobalContext = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, reviews, couponCodes, isLoading }}>
+      value={{ products, reviews, couponCodes, isLoading, cart, setCart }}>
       {children}
     </ProductsContext.Provider>
   );

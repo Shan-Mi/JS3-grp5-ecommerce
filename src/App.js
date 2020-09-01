@@ -5,31 +5,39 @@ import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import Welcomepage from "./pages/WelcomePage";
+import LayoutSimple from "./components/LayoutSimple";
 
 function App() {
   return (
     <div className="App">
-      <header>
+      {/* <header>
         <p>E-commerce</p>
-      </header>
+      </header> */}
 
       <Switch>
         <Route path="/" exact>
-          <Welcomepage />
+          <LayoutSimple>
+            <Welcomepage />
+          </LayoutSimple>
         </Route>
 
         <Route
           path="/products/:id"
           exact
-          render={(props) => <ProductDetailPage {...props} />}
+          render={(props) => 
+            <LayoutSimple><ProductDetailPage {...props} /></LayoutSimple>}
         />
 
         <Route path="/products" exact>
-          <ProductListPage />
+          <LayoutSimple>
+            <ProductListPage />
+          </LayoutSimple>
         </Route>
 
         <Route path="/checkout" exact>
-          <CheckoutPage />
+          <LayoutSimple>
+            <CheckoutPage />
+          </LayoutSimple>
         </Route>
       </Switch>
     </div>
