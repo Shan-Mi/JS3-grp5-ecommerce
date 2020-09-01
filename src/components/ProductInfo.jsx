@@ -1,7 +1,6 @@
 import React from "react";
 import WithSpinner from "./withSpinner/WithSpinner";
 import "./ProductInfo.styles.scss";
-// import WithSpinner from "./withSpinner/WithSpinner";
 
 const ProductInfo = ({ isLoading, product }) => {
   const {
