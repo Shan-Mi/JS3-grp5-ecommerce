@@ -71,7 +71,8 @@ const checkoutItems = {
 
 export default function CheckoutItemsList() {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
-  /*   const { cart } = ProductsData; */ const cart = checkoutItems;
+  const { cart } = ProductsData;
+  /* const cart = checkoutItems; */
 
   function renderTableRows() {
     return (

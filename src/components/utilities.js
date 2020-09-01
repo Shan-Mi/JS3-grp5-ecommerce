@@ -1,5 +1,4 @@
 // funktionen totalPrice
-import React from "react";
 
 export function cartTotalPrice(cart) {
   const totalPrice =
