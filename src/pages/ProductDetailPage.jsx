@@ -16,7 +16,7 @@ export default function ProductDetailPage() {
   // console.log(products);
   return (
     <div>
-      <ProductInfo product={product} />
+      <ProductInfo product={product} isLoading={isLoading} />
       <ProductReviews reviews={reviews} />
     </div>
   );
