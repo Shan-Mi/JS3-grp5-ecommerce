@@ -25,27 +25,23 @@ const ProductInfo = ({ isLoading, product }) => {
           <img className="product-detail-img" src={src.medium} alt={alt} />
         </div>
 
+
         <div className="product-detail-info">
           <h1>{name}</h1>
-          <h5>
-            <span>Description: </span>
-            {description}
-          </h5>
-          <h5>
-            <span>Price: </span>
-            {price}
-          </h5>
-          <h5>
-            <span>Rating: </span>
-            {rating}
-          </h5>
-          <h5>
-            <span>Stock: </span>
-            {stock}
-          </h5>
+          <div className="row">
+            <div className="col-sm">
+              <h5>Price: {price}</h5>
+              <h5>Rating: {rating}</h5>
+              <h5>Stock: {stock}</h5>
+            </div>
+            <div className="col-sm">{description}</div>
+          </div>
           {/* {id} */}
-          <button onClick={setCart}>Add to Cart</button>
+          <button className="btn btn-primary" onClick={setCart}>Add to Cart</button>
         </div>
+      </div>
+      <div className="row mt-3">
+        <div className="col-sm">REVIEW GOES HERE</div>
       </div>
     </>
   );
