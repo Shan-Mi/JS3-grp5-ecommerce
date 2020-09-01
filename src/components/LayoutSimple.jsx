@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./LayoutSimple.styles.scss";
 import { getCartItemsCount } from "./utilities";
@@ -6,9 +6,8 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import CartDropDown from "./CartDropDown";
 
 export default function LayoutSimple({ children }) {
-  const { cart } = useContext(ProductsContext);
+  const { cart, showCart, setShowCart } = useContext(ProductsContext);
   const cartItemsAmount = getCartItemsCount(cart);
-  const [showCart, setShowCart] = useState(false);
 
   function toggleCartDisplay() {
     setShowCart(!showCart);
@@ -26,7 +25,7 @@ export default function LayoutSimple({ children }) {
           Cart<span className="cart-count">{cartItemsAmount}</span>
         </button>
 
-        <CartDropDown showCart={showCart} />
+        <CartDropDown />
       </nav>
       <div className="container">{children}</div>
     </header>
