@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
-
+import { cartTotalPrice } from "./utilities";
 const checkoutItems = {
   16065: {
     description: "Please don't eat this one... for real!",
@@ -72,7 +72,7 @@ const checkoutItems = {
 export default function CheckoutItemsList() {
   const ProductsData = useContext(ProductsContext);
   const { cart } = ProductsData; // using dummy data just for now
-  /*  const cart = checkoutItems; */ cart && console.log(Object.entries(cart));
+  /*  const cart = checkoutItems; */
 
   function renderTableRows() {
     return (
@@ -106,6 +106,7 @@ export default function CheckoutItemsList() {
         </thead>
         <tbody>{cart && renderTableRows()}</tbody>
       </table>
+      <p>Total Price: {cartTotalPrice(cart)} SEK</p>
     </div>
   );
 }
