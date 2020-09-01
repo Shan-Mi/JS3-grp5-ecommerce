@@ -1,5 +1,6 @@
 // länka in ProductList
-import React from 'react'
+import React from 'react';
+
 
 const ProductListPage = () => {
   return (
