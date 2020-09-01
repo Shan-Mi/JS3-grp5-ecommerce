@@ -1,10 +1,25 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { ProductsContext } from "../contexts/GlobalContext";
+import ProductReviews from "../components/ProductReviews";
+import ProductInfo from "../components/ProductInfo";
 
 export default function ProductDetailPage() {
   let { id } = useParams();
-  console.log(id)
-  return <div>This is detail page</div>;
+  const ProductsData = useContext(ProductsContext);
+  const { products, reviews, couponCodes, isLoading } = ProductsData;
+  id = "16065";
+  let product;
+  if (products) {
+    product = products[id];
+  }
+  // console.log(products);
+  return (
+    <div>
+      <ProductInfo product={product} isLoading={isLoading} />
+      <ProductReviews reviews={reviews} />
+    </div>
+  );
 }
 
 // Länka in ProductInfo och ProductReviews
