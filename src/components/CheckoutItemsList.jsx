@@ -1,5 +1,6 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { ProductsContext } from "../contexts/GlobalContext";
+import { cartTotalPrice } from "./utilities";
 const checkoutItems = {
   16065: {
     description: "Please don't eat this one... for real!",
@@ -69,36 +70,59 @@ const checkoutItems = {
 };
 
 export default function CheckoutItemsList() {
+  const ProductsData = useContext(ProductsContext); // using dummy data just for now
+  const { cart: cartItems } = ProductsData;
+  // const cart = checkoutItems;
+  // const cartItems = window.localStorage.getItem('cart')
+
+  function renderTableRows() {
+    return (
+      cartItems &&
+      cartItems.map(({ id, name, price, quantity }, index) => (
+        <tr key={id}>
+          <th scope="row">{index + 1}</th>
+          <td>{name}</td>
+          <td>{quantity}</td>
+          <td className="text-right">{price} SEK</td>
+        </tr>
+      ))
+      /* Object.entries(cart).map((product, index) => {
+        const key = product[1].id;
+        const name = product[1].name;
+        const price = product[1].price;
+
+        return (
+          <tr key={key}>
+            <th scope="row">{index + 1}</th>
+            <td>{name}</td>
+            <td className="text-right">{price} SEK</td>
+          </tr>
+        );
+      }) */
+    );
+  }
+
   return (
     <div>
-      <table class="table table-sm">
-        <thead>
+      <table className="table table-sm table-hover ">
+        <thead className="text-left">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col" className="text-right">
+              Price
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
+        <tfoot>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td colSpan="4" className="text-right font-weight-bold">
+              Total Price: {cartTotalPrice(cartItems)} SEK
+            </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+        </tfoot>
       </table>
     </div>
   );

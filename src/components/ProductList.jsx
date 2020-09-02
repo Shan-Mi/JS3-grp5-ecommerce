@@ -3,10 +3,9 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import ProductCard from "./ProductCard";
 
 export default function ProductList() {
-  const ProductsData = useContext(ProductsContext);
-  const { products } = ProductsData;
-
-  products && console.log(Object.entries(products));
+  const { products }  = useContext(ProductsContext);
+  // const { products } = ProductsData;
+  // products && console.log(Object.entries(products));
 
   return (
     <div className="row">
@@ -27,8 +26,7 @@ export default function ProductList() {
               price={price}
               description={description}
               imgURL={imgURL}
-              imgAlt={imgAlt}
-            ></ProductCard>
+              imgAlt={imgAlt}></ProductCard>
           );
         })}
     </div>

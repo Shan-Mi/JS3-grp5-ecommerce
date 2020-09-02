@@ -24,8 +24,11 @@ function App() {
         <Route
           path="/products/:id"
           exact
-          render={(props) => 
-            <LayoutSimple><ProductDetailPage {...props} /></LayoutSimple>}
+          render={(props) => (
+            <LayoutSimple>
+              <ProductDetailPage {...props} />
+            </LayoutSimple>
+          )}
         />
 
         <Route path="/products" exact>
