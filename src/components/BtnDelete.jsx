@@ -2,6 +2,7 @@ import React from 'react'
 import {useContext} from 'react'
 import { ProductsContext } from "../contexts/GlobalContext";
 import { deleteItemFromCart } from "./utilities";
+import { FaTrashAlt } from 'react-icons/fa';
 
 export default function BtnDelete({id}) {
   const { cart, setCart, products } = useContext(ProductsContext);
@@ -12,6 +13,6 @@ export default function BtnDelete({id}) {
             onClick={() => {
               setCart(deleteItemFromCart(cart, products[id]),
               );
-            }}>x</button>
+            }}><FaTrashAlt /></button>
   )
 }
