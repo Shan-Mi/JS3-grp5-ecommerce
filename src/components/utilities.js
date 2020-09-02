@@ -19,6 +19,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
 
+  // you should not be able to add more items than in stock
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
       cartItem.id === cartItemToAdd.id
@@ -46,6 +47,11 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : cartItem
   );
+};
+
+export const deleteItemFromCart = (cartItems, cartItemToRemove) => {
+  // delete from cart
+  return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
 };
 
 export const getCartItemsCount = (cartItems) => {

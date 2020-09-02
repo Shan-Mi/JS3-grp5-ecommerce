@@ -11,16 +11,16 @@ export default function BtnIncreaseDecrease({quantity, id}) {
       <button
             className="btn"
             onClick={() => {
-              setCart(addItemToCart(cart, products[id]),
+              setCart(removeItemFromCart(cart, products[id]),
               );
-            }}>+</button>
+            }}>-</button>
         {quantity}
       <button
             className="btn"
             onClick={() => {
-              setCart(removeItemFromCart(cart, products[id]),
+              setCart(addItemToCart(cart, products[id]),
               );
-            }}>-</button>
+            }}>+</button>
     </div>
   )
 }

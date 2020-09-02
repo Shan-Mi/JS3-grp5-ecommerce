@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
+import BtnDelete from "./BtnDelete";
 
 export default function CheckoutItemsList() {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
@@ -14,6 +15,7 @@ export default function CheckoutItemsList() {
       cartItems &&
       cartItems.map(({ id, name, price, quantity }, index) => (
         <tr key={id}>
+          <td><BtnDelete id={id} /></td>
           <th scope="row">{index + 1}</th>
           <td>{name}</td>
           <td><BtnIncreaseDecrease quantity={quantity} id={id} /></td>
@@ -41,6 +43,7 @@ export default function CheckoutItemsList() {
       <table className="table table-sm table-hover ">
         <thead className="text-left">
           <tr>
+            <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
@@ -52,7 +55,7 @@ export default function CheckoutItemsList() {
         <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
         <tfoot>
           <tr>
-            <td colSpan="4" className="text-right font-weight-bold">
+            <td colSpan="5" className="text-right font-weight-bold">
               Total Price: {cartTotalPrice(cartItems)} SEK
             </td>
           </tr>
