@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
-// import { cartTotalPrice } from "./utilities";
+import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
 
-export default function CheckoutItemsList({ discountPrice, setDiscountPrice }) {
+export default function CheckoutItemsList({ discountPrice, setDiscountPrice, discountRate }) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
   const { cart: cartItems } = ProductsData;
   // const cart = checkoutItems;
@@ -28,7 +28,7 @@ export default function CheckoutItemsList({ discountPrice, setDiscountPrice }) {
               setDiscountPrice={setDiscountPrice}
             />
           </td>
-          <td className="text-right">{price * quantity} SEK</td>
+          <td className="text-right">{(price * quantity * discountRate).toFixed(2)} SEK</td>
         </tr>
       ))
       /* Object.entries(cart).map((product, index) => {
@@ -67,8 +67,8 @@ export default function CheckoutItemsList({ discountPrice, setDiscountPrice }) {
         <tfoot>
           <tr>
             <td colSpan="5" className="text-right font-weight-bold">
-              {/* Total Price: {cartTotalPrice(cartItems)} SEK */}
-              Total Price: {discountPrice} SEK
+               Total Price: {(cartTotalPrice(cartItems)* discountRate).toFixed(2)} SEK 
+              {/* Total Price: {discountPrice} SEK */}
               <span className="discount-price d-none">{discountPrice}</span>
             </td>
           </tr>
