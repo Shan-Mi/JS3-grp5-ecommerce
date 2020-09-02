@@ -55,7 +55,7 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
       setDiscountPrice(discountPrice * couponCodes[value].discount);
-      setDisabledClick("true");
+      setDisabledClick(true);
       // console.log(disabledClick);
     }
     // now can check if it's valid coupon, then need to do the math.

@@ -11,7 +11,7 @@ export default function CheckoutPage() {
   return (
     <div>
       This is check out page
-      <CheckoutItemsList discountPrice={discountPrice} />
+      <CheckoutItemsList discountPrice={discountPrice} setDiscountPrice={setDiscountPrice} />
       <CustomerOrderForm discountPrice={discountPrice} setDiscountPrice={setDiscountPrice} />
     </div>
   );

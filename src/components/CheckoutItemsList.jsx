@@ -5,7 +5,7 @@ import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
 
-export default function CheckoutItemsList({discountPrice}) {
+export default function CheckoutItemsList({discountPrice, setDiscountPrice}) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
   const { cart: cartItems } = ProductsData;
   // const cart = checkoutItems;
@@ -19,7 +19,7 @@ export default function CheckoutItemsList({discountPrice}) {
           <td><BtnDelete id={id} /></td>
           <th scope="row">{index + 1}</th>
           <td>{name}</td>
-          <td><BtnIncreaseDecrease quantity={quantity} id={id} /></td>
+          <td><BtnIncreaseDecrease quantity={quantity} id={id} setDiscountPrice={setDiscountPrice} /></td>
           <td className="text-right">{price * quantity} SEK</td>
         </tr>
       ))
@@ -57,6 +57,7 @@ export default function CheckoutItemsList({discountPrice}) {
         <tfoot>
           <tr>
             <td colSpan="5" className="text-right font-weight-bold">
+              {/* Total Price: {cartTotalPrice(cartItems)} SEK */}
               Total Price: {discountPrice} SEK
               <span className='discount-price d-none'>{discountPrice}</span>
             </td>
