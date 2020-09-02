@@ -5,7 +5,7 @@ export default function CheckoutPage() {
   return (
     <div>
       This is check out page
-      <CheckoutItemsList></CheckoutItemsList>
+      <CheckoutItemsList />
     </div>
   );
 }

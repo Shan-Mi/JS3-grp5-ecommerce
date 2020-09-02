@@ -5,10 +5,9 @@ import ProductReviews from "../components/ProductReviews";
 import ProductInfo from "../components/ProductInfo";
 
 export default function ProductDetailPage() {
-  let { id } = useParams();
+  const { id } = useParams();
   const ProductsData = useContext(ProductsContext);
   const { products, reviews, couponCodes, isLoading } = ProductsData;
-  id = "16065";
   let product;
   if (products) {
     product = products[id];

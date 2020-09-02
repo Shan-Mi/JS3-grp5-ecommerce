@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import WithSpinner from "./withSpinner/WithSpinner";
 import "./ProductInfo.styles.scss";
 import { ProductsContext } from "../contexts/GlobalContext";
+import { addItemToCart, removeItemFromCart } from "./utilities";
 
 const ProductInfo = ({ isLoading, product }) => {
   const {
@@ -14,8 +15,9 @@ const ProductInfo = ({ isLoading, product }) => {
     stock,
   } = product;
 
-  const { cart, setCart } = useContext(ProductsContext);
-  // cart: an object that stores all items
+  const { cart, setCart, products } = useContext(ProductsContext);
+
+  // cart: an array that stores all items
   // setCart: this id-item count +1, check stock status, conditional disable btn.
 
   return (
@@ -24,7 +26,6 @@ const ProductInfo = ({ isLoading, product }) => {
         <div className="product-detail-image">
           <img className="product-detail-img" src={src.medium} alt={alt} />
         </div>
-
 
         <div className="product-detail-info">
           <h1>{name}</h1>
@@ -37,7 +38,13 @@ const ProductInfo = ({ isLoading, product }) => {
             <div className="col-sm">{description}</div>
           </div>
           {/* {id} */}
-          <button className="btn btn-primary" onClick={setCart}>Add to Cart</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setCart(addItemToCart(cart, products[id]));
+            }}>
+            Add to Cart
+          </button>
         </div>
       </div>
       <div className="row mt-3">

@@ -71,13 +71,22 @@ const checkoutItems = {
 
 export default function CheckoutItemsList() {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
-  const { cart } = ProductsData;
-  /* const cart = checkoutItems; */
+  const { cart: cartItems } = ProductsData;
+  // const cart = checkoutItems;
+  // const cartItems = window.localStorage.getItem('cart')
 
   function renderTableRows() {
     return (
-      cart &&
-      Object.entries(cart).map((product, index) => {
+      cartItems &&
+      cartItems.map(({ id, name, price, quantity }, index) => (
+        <tr key={id}>
+          <th scope="row">{index + 1}</th>
+          <td>{name}</td>
+          <td>{quantity}</td>
+          <td className="text-right">{price} SEK</td>
+        </tr>
+      ))
+      /* Object.entries(cart).map((product, index) => {
         const key = product[1].id;
         const name = product[1].name;
         const price = product[1].price;
@@ -89,7 +98,7 @@ export default function CheckoutItemsList() {
             <td className="text-right">{price} SEK</td>
           </tr>
         );
-      })
+      }) */
     );
   }
 
@@ -100,16 +109,17 @@ export default function CheckoutItemsList() {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
             <th scope="col" className="text-right">
               Price
             </th>
           </tr>
         </thead>
-        <tbody className="text-left">{cart && renderTableRows()}</tbody>
+        <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
         <tfoot>
           <tr>
-            <td colSpan="3" className="text-right font-weight-bold">
-              Total Price: {cartTotalPrice(cart)} SEK
+            <td colSpan="4" className="text-right font-weight-bold">
+              Total Price: {cartTotalPrice(cartItems)} SEK
             </td>
           </tr>
         </tfoot>
