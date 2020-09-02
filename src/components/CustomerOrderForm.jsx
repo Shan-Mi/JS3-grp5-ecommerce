@@ -1,9 +1,19 @@
 import React, { useRef, useState, useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
+import { Button,Modal } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
   const { cart, couponCodes } = useContext(ProductsContext);
   const [disabledClick, setDisabledClick] = useState("");
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+
 
   let data = { order: cart };
   const nameInput = useRef();
@@ -50,7 +60,7 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
         // BLACKFRIDAY
       });
   }
-
+  
   function isCouponValid(value) {
     // return Object.keys(couponCodes).includes(value);
     if (Object.keys(couponCodes).includes(value)) {
@@ -140,14 +150,43 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
         <button
           type="submit"
           className="btn btn-primary"
+          variant="primary"
           onClick={(e) => {
             e.preventDefault();
             // console.log(couponInput.current.value);
             handleUserDeliveryInfo();
             //handlePostMessage
-          }}>
+          }} onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel() }}  
+          onClick={handleShow}
+          >
           Submit
         </button>
+
+
+
+
+        <>
+     {/*
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+     */}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose} >
+            Go back home
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+
+    
+
+
       </form>
     </div>
   );
