@@ -1,8 +1,10 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 
 export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
   const { cart, couponCodes } = useContext(ProductsContext);
+  const [disabledClick, setDisabledClick] = useState("");
+
   let data = { order: cart };
   const nameInput = useRef();
   const emailInput = useRef();
@@ -53,6 +55,8 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
       setDiscountPrice(discountPrice * couponCodes[value].discount);
+      setDisabledClick("true");
+      // console.log(disabledClick);
     }
     // now can check if it's valid coupon, then need to do the math.
   }
@@ -114,15 +118,18 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
           />
           <label
             className="form-check-label col ml-5 align-middle"
-            htmlFor="couponCheck">
+            htmlFor="couponCheck"
+            disabled={disabledClick}>
             <input
               type="checkbox"
               className="form-check-input "
               id="couponCheck"
+              disabled={disabledClick}
               onClick={() => {
                 console.log(data);
                 // console.log(isCouponValid(couponInput.current.value));
                 isCouponValid(couponInput.current.value);
+
                 // TODO: check if it is valid coupon, if so reduce total amount
               }}
             />
