@@ -20,20 +20,26 @@ export default function ProductReviews({ reviews, id }) {
         const title = review.title;
 
         return (
-          <div key={key}>
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <p>{date}</p>
-            <p>{rating}</p>
-            <p>{author}</p>
+
+
+          <div className="card mb-4" key={key}>
+            <div className="card-body">
+              <h3 className="card-title">{title}</h3>
+              <p> {rating}/5</p>
+              <p>{description}</p>
+            </div>
+        <div className="card-footer text-muted">Posted: {date} Author {author}</div>
           </div>
-        );
+
+     );
       });
     } else {
       return <p>No review for this product</p>;
     }
   }
-  return <div>{reviews && renderReviews()}</div>;
+  return <div>
+    <h2>Reviews</h2> 
+    {reviews && renderReviews()}</div>;
 }
 
 // Hämta reviews om det finns till den produkten
