@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BtnAddToCart from "./BtnAddToCart";
+import "./ProductCard.styles.scss";
 export default function ProductCard({
   imgURL,
   imgAlt,
@@ -15,7 +16,7 @@ export default function ProductCard({
 
   return (
     <div className="col-md-4 text-center mb-2">
-      <div className="card">
+      <div className="card h-100">
         <Link to={`/products/${id}`}>
           <img className="card-img-top" src={imgURL} alt={imgAlt} />
         </Link>

@@ -14,21 +14,23 @@ export default function LayoutSimple({ children }) {
   }
 
   return (
-    <header>
-      <nav className="navbar navbar-light bg-light">
-        <Link to="/" className="navbar-brand">
-          ShopName
-        </Link>
-        <button
-          className="btn btn-outline-primary my-2 my-sm-0"
-          onClick={() => toggleCartDisplay()}>
-          Cart<span className="cart-count">{cartItemsAmount}</span>
-        </button>
+    <div>
+      <header className="stickyheader">
+        <nav className="navbar sticky-top navbar-light bg-light">
+          <Link to="/" className="navbar-brand">
+            ShopName
+          </Link>
+          <button
+            className="btn btn-outline-primary my-2 my-sm-0"
+            onClick={() => toggleCartDisplay()}>
+            Cart<span className="cart-count">{cartItemsAmount}</span>
+          </button>
 
-        <CartDropDown />
-      </nav>
+          <CartDropDown />
+        </nav>
+      </header>
       <div className="container">{children}</div>
-    </header>
+    </div>
   );
 }
 
