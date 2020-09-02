@@ -15,8 +15,8 @@ export default function LayoutSimple({ children }) {
 
   return (
     <div>
-      <header>
-        <nav className="navbar navbar-light bg-light">
+      <header className="stickyheader">
+        <nav className="navbar sticky-top navbar-light bg-light">
           <Link to="/" className="navbar-brand">
             ShopName
           </Link>
