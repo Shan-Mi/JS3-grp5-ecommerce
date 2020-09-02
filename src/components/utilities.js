@@ -19,10 +19,10 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
 
-  // you should not be able to add more items than in stock
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
-      cartItem.id === cartItemToAdd.id
+    // added && cartItem.stock > cartItem.quantity to make sure stock is enpugh to fill order
+      cartItem.id === cartItemToAdd.id && cartItem.stock > cartItem.quantity
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
