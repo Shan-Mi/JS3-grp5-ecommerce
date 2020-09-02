@@ -16,7 +16,7 @@ export default function ProductDetailPage() {
   return (
     <div>
       <ProductInfo product={product} isLoading={isLoading} />
-      <ProductReviews reviews={reviews} />
+      <ProductReviews reviews={reviews}id={id} />
     </div>
   );
 }

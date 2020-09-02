@@ -5,7 +5,7 @@ import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
 
-export default function CheckoutItemsList() {
+export default function CheckoutItemsList({discountPrice}) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
   const { cart: cartItems } = ProductsData;
   // const cart = checkoutItems;
@@ -57,7 +57,8 @@ export default function CheckoutItemsList() {
         <tfoot>
           <tr>
             <td colSpan="5" className="text-right font-weight-bold">
-              Total Price: {cartTotalPrice(cartItems)} SEK
+              Total Price: {discountPrice} SEK
+              <span className='discount-price d-none'>{discountPrice}</span>
             </td>
           </tr>
         </tfoot>
