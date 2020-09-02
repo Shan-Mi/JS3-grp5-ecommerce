@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BtnAddToCart from "./BtnAddToCart";
+import "./ProductCard.styles.scss";
 export default function ProductCard({
   imgURL,
   imgAlt,
