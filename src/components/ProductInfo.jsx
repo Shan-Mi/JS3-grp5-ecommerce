@@ -26,16 +26,13 @@ const ProductInfo = ({ isLoading, product }) => {
           <div className="row">
             <div className="col-sm">
               <h5>Price: {price} SEK</h5>
-              <h5>Rating: {rating}</h5>
+              <h5>Rating: {rating}/5</h5>
               <h5>Stock: {stock}</h5>
             </div>
             <div className="col-sm">{description}</div>
           </div>
           <BtnAddToCart id={id}/>              
         </div>
-      </div>
-      <div className="row mt-3">
-        <div className="col-sm">REVIEW GOES HERE</div>
       </div>
     </>
   );
