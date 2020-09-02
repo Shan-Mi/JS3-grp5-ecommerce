@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import WithSpinner from "./withSpinner/WithSpinner";
 import "./ProductInfo.styles.scss";
-import { ProductsContext } from "../contexts/GlobalContext";
-import { addItemToCart, removeItemFromCart } from "./utilities";
+import BtnAddToCart from "./BtnAddToCart";
 
 const ProductInfo = ({ isLoading, product }) => {
   const {
@@ -14,11 +13,6 @@ const ProductInfo = ({ isLoading, product }) => {
     rating,
     stock,
   } = product;
-
-  const { cart, setCart, products } = useContext(ProductsContext);
-
-  // cart: an array that stores all items
-  // setCart: this id-item count +1, check stock status, conditional disable btn.
 
   return (
     <>
@@ -37,14 +31,7 @@ const ProductInfo = ({ isLoading, product }) => {
             </div>
             <div className="col-sm">{description}</div>
           </div>
-          {/* {id} */}
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              setCart(addItemToCart(cart, products[id]));
-            }}>
-            Add to Cart
-          </button>
+          <BtnAddToCart id={id}/>              
         </div>
       </div>
       <div className="row mt-3">
