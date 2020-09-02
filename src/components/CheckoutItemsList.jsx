@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
-import { cartTotalPrice } from "./utilities";
+// import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
