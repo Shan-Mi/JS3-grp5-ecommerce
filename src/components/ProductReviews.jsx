@@ -1,43 +1,39 @@
-import React, { useContext } from "react";
+import React from "react";
 
-
-
-export default function ProductReviews({reviews,id}){
+export default function ProductReviews({ reviews, id }) {
   console.log(reviews);
-  console.log(id)
-  return (
-  <div>
-    {
-      reviews && 
-      Object.entries(reviews).map((review,index) => {
-const productId = review[0]
+  console.log(id);
+  function renderReviews() {
+    const productReviews = Object.entries(reviews).find(
+      (reviewArray) => reviewArray[0] === id
+    );
+    console.log(productReviews);
 
-        if (productId === id){
-          const key=productId + indexedDB;
-const author = review[1][0].author.name
-const date = review[1][0].date
-const description = review[1][0].description
-const rating = review[1][0].rating
-const title = review[1][0].title
+    if (productReviews) {
+      console.log("there is review");
+      return productReviews[1].map((review, index) => {
+        const key = index;
+        const author = review.author.name;
+        const date = review.date;
+        const description = review.description;
+        const rating = review.rating;
+        const title = review.title;
 
-console.log(review[1])
-
-return (
-  <div key={key}>
-<h3>{title}</h3>
-        <p>{description}</p>
-        <p>{date}</p>
-        <p>{rating}</p>
-        <p>{author}</p>
-  </div>
-      )
-}else {
-  return;
-}
-      })}
-    
-  </div>
-  );
+        return (
+          <div key={key}>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <p>{date}</p>
+            <p>{rating}</p>
+            <p>{author}</p>
+          </div>
+        );
+      });
+    } else {
+      return <p>No review for this product</p>;
+    }
+  }
+  return <div>{reviews && renderReviews()}</div>;
 }
 
 // Hämta reviews om det finns till den produkten

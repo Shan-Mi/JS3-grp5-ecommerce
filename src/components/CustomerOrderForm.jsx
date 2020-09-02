@@ -7,8 +7,8 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
 
   let data = { order: cart };
   const nameInput = useRef();
-  const emailInput = useRef();
-  const addressInput = useRef();
+  // const emailInput = useRef();
+  // const addressInput = useRef();
   const couponInput = useRef();
   const SEND_ORDER_URL =
     "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/nametobedecided.json";
@@ -16,15 +16,16 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
 
   function handleUserDeliveryInfo() {
     const nameValue = nameInput.current.value; // string
-    const emailValue = emailInput.current.value;
-    const addressValue = addressInput.current.value;
+    // const emailValue = emailInput.current.value;
+    // const addressValue = addressInput.current.value;
     const couponValue = couponInput.current.value;
     data = {
       ...data,
       username: nameValue,
-      email: emailValue,
-      address: addressValue,
+      // email: emailValue,
+      // address: addressValue,
       coupon: couponValue,
+      price: discountPrice
     };
     // console.log(nameValue, emailValue, addressValue, couponValue);
     console.log(data);
@@ -54,7 +55,7 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
     // return Object.keys(couponCodes).includes(value);
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
-      setDiscountPrice(discountPrice * couponCodes[value].discount);
+      setDiscountPrice((discountPrice * couponCodes[value].discount).toFixed(2));
       setDisabledClick(true);
       // console.log(disabledClick);
     }
@@ -80,7 +81,7 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input
             type="email"
@@ -106,7 +107,7 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
             ref={addressInput}
             placeholder="Address"
           />
-        </div>
+        </div> */}
 
         <div className="form-group row">
           <input
@@ -129,8 +130,8 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
                 console.log(data);
                 // console.log(isCouponValid(couponInput.current.value));
                 isCouponValid(couponInput.current.value);
-
-                // TODO: check if it is valid coupon, if so reduce total amount
+                // TODO: check if it is valid coupon, if so reduce total amount;
+                // PROBLEM: how to unclick and recalculate discount price.
               }}
             />
             Check me out
