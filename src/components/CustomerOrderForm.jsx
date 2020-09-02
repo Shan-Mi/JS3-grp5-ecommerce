@@ -10,7 +10,7 @@ export default function CustomerOrderForm({
   discountRate,
 }) {
   const { cart, couponCodes } = useContext(ProductsContext);
-  const [disabledClick, setDisabledClick] = useState("");
+  // const [disabledClick, setDisabledClick] = useState("");
 
   const [show, setShow] = useState(false);
 
@@ -33,7 +33,7 @@ export default function CustomerOrderForm({
       coupon: couponValue,
       price: discountPrice,
       discountRate: discountRate,
-      finalPrice: discountPrice * discountRate,
+      finalPrice: (discountPrice * discountRate).toFixed(2),
     };
     // console.log(nameValue, emailValue, addressValue, couponValue);
     console.log(data);
@@ -64,7 +64,7 @@ export default function CustomerOrderForm({
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
       setDiscountRate(couponCodes[value].discount);
-      setDisabledClick(true);
+      // setDisabledClick(true);
     }
   }
 
@@ -104,7 +104,7 @@ export default function CustomerOrderForm({
               id="couponCheck"
               // disabled={disabledClick}
               onClick={() => {
-                console.log(data);
+                // console.log(data);
                 isCouponValid(couponInput.current.value);
                 // setDisabledClick(true)
                 if (discountRate !== 1) {
