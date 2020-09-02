@@ -5,8 +5,9 @@ export function cartTotalPrice(cart) {
     cart &&
     Object.entries(cart).reduce((total, product) => {
       const price = product[1].price;
+      const qty = product[1].quantity;
 
-      return total + price;
+      return total + price * qty;
     }, 0);
   return totalPrice;
 }
@@ -20,7 +21,8 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
-      cartItem.id === cartItemToAdd.id
+    // added && cartItem.stock > cartItem.quantity to make sure stock is enpugh to fill order
+      cartItem.id === cartItemToAdd.id && cartItem.stock > cartItem.quantity
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
@@ -45,6 +47,11 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : cartItem
   );
+};
+
+export const deleteItemFromCart = (cartItems, cartItemToRemove) => {
+  // delete from cart
+  return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
 };
 
 export const getCartItemsCount = (cartItems) => {

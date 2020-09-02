@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-// import BtnAddToCart from './BtnAddToCart'
-import { ProductsContext } from "../contexts/GlobalContext";
-import { addItemToCart, removeItemFromCart, getCartItemsCount } from "./utilities";
-
+import BtnAddToCart from "./BtnAddToCart";
 export default function ProductCard({
   imgURL,
   imgAlt,
@@ -12,8 +9,9 @@ export default function ProductCard({
   description,
   id,
 }) {
-  const { cart, setCart, products } = useContext(ProductsContext);
-  // const cartItemsAmount = getCartItemsCount(cart);
+  function truncate(str, n) {
+    return str.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
 
   return (
     <div className="col-md-4 text-center mb-2">
@@ -24,18 +22,10 @@ export default function ProductCard({
         <div className="card-body">
           <Link to={`/products/${id}`}>
             <h5 className="card-title m-3">{name}</h5>
-            <p className="card-text">{description}</p>
-            <p className="card-text">{price}</p>
+            <p className="card-text">{truncate(description, 40)}</p>
+            <p className="card-text">{price} SEK</p>
           </Link>
-          {/* <BtnAddToCart />               */}
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              setCart(addItemToCart(cart, products[id]),
-              );
-            }}>
-            Add to Cart
-          </button>{" "}
+          <BtnAddToCart id={id} />
         </div>
       </div>
     </div>

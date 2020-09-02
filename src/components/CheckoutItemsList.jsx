@@ -1,73 +1,8 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { cartTotalPrice } from "./utilities";
-const checkoutItems = {
-  16065: {
-    description: "Please don't eat this one... for real!",
-    id: 16065,
-    images: [
-      {
-        alt: "an orange painted blue",
-        src: {
-          large:
-            "https://was-reach-hackathon-img.now.sh/mysterious-orange_L.jpg",
-          medium:
-            "https://was-reach-hackathon-img.now.sh/mysterious-orange_M.jpg",
-          small:
-            "https://was-reach-hackathon-img.now.sh/mysterious-orange_S.jpg",
-        },
-      },
-    ],
-    name: "Mysterious Orange",
-    price: 324,
-    rating: 4.7,
-    stock: 7,
-  },
-  18272: {
-    description:
-      "Get this rare pieace of tech that has been hand painted in a matte white finnish!",
-    id: 18272,
-    images: [
-      {
-        alt: "a white playstation",
-        src: {
-          large:
-            "https://was-reach-hackathon-img.now.sh/white-playstation_L.jpg",
-          medium:
-            "https://was-reach-hackathon-img.now.sh/white-playstation_M.jpg",
-          small:
-            "https://was-reach-hackathon-img.now.sh/white-playstation_S.jpg",
-        },
-      },
-    ],
-    name: "White Playstation",
-    price: 4595,
-    rating: 4.5,
-    stock: 2,
-  },
-  19336: {
-    description:
-      "Want to look cool whilst listening to some sweet music? Get theese matte black over-the-ear headphones today!",
-    id: 19336,
-    images: [
-      {
-        alt: "black hadphones",
-        src: {
-          large:
-            "https://was-reach-hackathon-img.now.sh/black-headphones_L.jpg",
-          medium:
-            "https://was-reach-hackathon-img.now.sh/black-headphones_M.jpg",
-          small:
-            "https://was-reach-hackathon-img.now.sh/black-headphones_S.jpg",
-        },
-      },
-    ],
-    name: "Black Headphones",
-    price: 3426,
-    rating: 3.5,
-    stock: 200,
-  },
-};
+import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
+import BtnDelete from "./BtnDelete";
 
 export default function CheckoutItemsList() {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
@@ -80,10 +15,11 @@ export default function CheckoutItemsList() {
       cartItems &&
       cartItems.map(({ id, name, price, quantity }, index) => (
         <tr key={id}>
+          <td><BtnDelete id={id} /></td>
           <th scope="row">{index + 1}</th>
           <td>{name}</td>
-          <td>{quantity}</td>
-          <td className="text-right">{price} SEK</td>
+          <td><BtnIncreaseDecrease quantity={quantity} id={id} /></td>
+          <td className="text-right">{price * quantity} SEK</td>
         </tr>
       ))
       /* Object.entries(cart).map((product, index) => {
@@ -107,6 +43,7 @@ export default function CheckoutItemsList() {
       <table className="table table-sm table-hover ">
         <thead className="text-left">
           <tr>
+            <th scope="col"></th>
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
@@ -118,7 +55,7 @@ export default function CheckoutItemsList() {
         <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
         <tfoot>
           <tr>
-            <td colSpan="4" className="text-right font-weight-bold">
+            <td colSpan="5" className="text-right font-weight-bold">
               Total Price: {cartTotalPrice(cartItems)} SEK
             </td>
           </tr>
@@ -128,3 +65,72 @@ export default function CheckoutItemsList() {
   );
 }
 // loopa ut alla produkter som finns i cart-context
+
+
+// const checkoutItems = {
+//   16065: {
+//     description: "Please don't eat this one... for real!",
+//     id: 16065,
+//     images: [
+//       {
+//         alt: "an orange painted blue",
+//         src: {
+//           large:
+//             "https://was-reach-hackathon-img.now.sh/mysterious-orange_L.jpg",
+//           medium:
+//             "https://was-reach-hackathon-img.now.sh/mysterious-orange_M.jpg",
+//           small:
+//             "https://was-reach-hackathon-img.now.sh/mysterious-orange_S.jpg",
+//         },
+//       },
+//     ],
+//     name: "Mysterious Orange",
+//     price: 324,
+//     rating: 4.7,
+//     stock: 7,
+//   },
+//   18272: {
+//     description:
+//       "Get this rare pieace of tech that has been hand painted in a matte white finnish!",
+//     id: 18272,
+//     images: [
+//       {
+//         alt: "a white playstation",
+//         src: {
+//           large:
+//             "https://was-reach-hackathon-img.now.sh/white-playstation_L.jpg",
+//           medium:
+//             "https://was-reach-hackathon-img.now.sh/white-playstation_M.jpg",
+//           small:
+//             "https://was-reach-hackathon-img.now.sh/white-playstation_S.jpg",
+//         },
+//       },
+//     ],
+//     name: "White Playstation",
+//     price: 4595,
+//     rating: 4.5,
+//     stock: 2,
+//   },
+//   19336: {
+//     description:
+//       "Want to look cool whilst listening to some sweet music? Get theese matte black over-the-ear headphones today!",
+//     id: 19336,
+//     images: [
+//       {
+//         alt: "black hadphones",
+//         src: {
+//           large:
+//             "https://was-reach-hackathon-img.now.sh/black-headphones_L.jpg",
+//           medium:
+//             "https://was-reach-hackathon-img.now.sh/black-headphones_M.jpg",
+//           small:
+//             "https://was-reach-hackathon-img.now.sh/black-headphones_S.jpg",
+//         },
+//       },
+//     ],
+//     name: "Black Headphones",
+//     price: 3426,
+//     rating: 3.5,
+//     stock: 200,
+//   },
+// };

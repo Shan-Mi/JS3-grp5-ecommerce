@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { cartTotalPrice } from "./utilities";
 
 export default function CartDropDown() {
-  const { cart: cartItems, showCart, setShowCart  } = useContext(ProductsContext);
+  const { cart: cartItems, showCart, setShowCart } = useContext(
+    ProductsContext
+  );
 
   function toggleCartDisplay() {
     setShowCart(!showCart);
@@ -26,8 +29,18 @@ export default function CartDropDown() {
             />
           ))}
         </div>
+        <p className="font-weight-bold">
+          Total Price: {cartTotalPrice(cartItems)} SEK
+        </p>
         <Link to="/checkout">
-          <button className="btn btn-outline-dark" onClick={()=>{toggleCartDisplay()} }>Go to Checkout</button>
+          <button
+            className="btn btn-outline-dark"
+            onClick={() => {
+              toggleCartDisplay();
+            }}
+          >
+            Go to Checkout
+          </button>
         </Link>
       </div>
     )
