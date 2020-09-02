@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
+import BtnClearCart from "./BtnClearCart";
 
 export default function CheckoutItemsList({discountPrice}) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
@@ -43,7 +44,7 @@ export default function CheckoutItemsList({discountPrice}) {
       <table className="table table-sm table-hover ">
         <thead className="text-left">
           <tr>
-            <th scope="col"></th>
+            <th scope="col"><BtnClearCart /></th>
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
