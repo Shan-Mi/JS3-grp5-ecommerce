@@ -1,8 +1,18 @@
 import React from "react";
+import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
 
 export default function ProductReviews({ reviews, id }) {
-  console.log(reviews);
-  console.log(id);
+  function ratingStars(rating) {
+    console.log(rating);
+    /*    <ImStarFull /> */
+    let starRating = [];
+
+    for (let i = 1; i <= rating; i++) {
+      starRating.push(<ImStarFull key={i} />);
+    }
+    return starRating;
+  }
+
   function renderReviews() {
     const productReviews = Object.entries(reviews).find(
       (reviewArray) => reviewArray[0] === id
@@ -23,7 +33,8 @@ export default function ProductReviews({ reviews, id }) {
           <div className="card mb-4" key={key}>
             <div className="card-body">
               <h3 className="card-title">{title}</h3>
-              <p> {rating}/5</p>
+              <div> {ratingStars(rating)}</div>
+
               <p>{description}</p>
             </div>
             <div className="card-footer text-muted">

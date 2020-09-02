@@ -8,11 +8,20 @@ export default function CheckoutPage() {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
   const { cart: cartItems } = ProductsData;
   const [discountPrice, setDiscountPrice] = useState(cartTotalPrice(cartItems));
+  const [discountRate, setDiscountRate] = useState(1);
   return (
     <div>
       This is check out page
-      <CheckoutItemsList discountPrice={discountPrice} setDiscountPrice={setDiscountPrice} />
-      <CustomerOrderForm discountPrice={discountPrice} setDiscountPrice={setDiscountPrice} />
+      <CheckoutItemsList
+        discountRate={discountRate}
+        discountPrice={discountPrice}
+        setDiscountPrice={setDiscountPrice}
+      />
+      <CustomerOrderForm
+        setDiscountRate={setDiscountRate} discountRate={discountRate}
+        discountPrice={discountPrice}
+        setDiscountPrice={setDiscountPrice}
+      />
     </div>
   );
 }

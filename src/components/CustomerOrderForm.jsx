@@ -3,7 +3,12 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import { Button,Modal } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
+export default function CustomerOrderForm({
+  discountPrice,
+  setDiscountPrice,
+  setDiscountRate,
+  discountRate,
+}) {
   const { cart, couponCodes } = useContext(ProductsContext);
   const [disabledClick, setDisabledClick] = useState("");
 
@@ -35,7 +40,8 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
       // email: emailValue,
       // address: addressValue,
       coupon: couponValue,
-      price: discountPrice
+      price: discountPrice,
+      discountRate: discountRate,
     };
     // console.log(nameValue, emailValue, addressValue, couponValue);
     console.log(data);
@@ -65,7 +71,10 @@ export default function CustomerOrderForm({ discountPrice, setDiscountPrice }) {
     // return Object.keys(couponCodes).includes(value);
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
-      setDiscountPrice((discountPrice * couponCodes[value].discount).toFixed(2));
+      setDiscountRate(couponCodes[value].discount);
+      setDiscountPrice(
+        (discountPrice * couponCodes[value].discount).toFixed(2)
+      );
       setDisabledClick(true);
       // console.log(disabledClick);
     }
