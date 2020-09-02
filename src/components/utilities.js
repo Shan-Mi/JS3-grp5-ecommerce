@@ -5,8 +5,9 @@ export function cartTotalPrice(cart) {
     cart &&
     Object.entries(cart).reduce((total, product) => {
       const price = product[1].price;
+      const qty = product[1].quantity;
 
-      return total + price;
+      return total + price * qty;
     }, 0);
   return totalPrice;
 }

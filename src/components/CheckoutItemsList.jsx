@@ -83,7 +83,7 @@ export default function CheckoutItemsList() {
           <th scope="row">{index + 1}</th>
           <td>{name}</td>
           <td>{quantity}</td>
-          <td className="text-right">{price} SEK</td>
+          <td className="text-right">{price * quantity} SEK</td>
         </tr>
       ))
       /* Object.entries(cart).map((product, index) => {
