@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { addItemToCart, removeItemFromCart, cartTotalPrice } from "./utilities";
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 export default function BtnIncreaseDecrease({
   quantity,
@@ -21,7 +22,7 @@ export default function BtnIncreaseDecrease({
         onClick={() => {
           setCart(removeItemFromCart(cart, products[id]));
         }}>
-        -
+        <FaMinus />
       </button>
       {quantity}
       <button
@@ -29,7 +30,7 @@ export default function BtnIncreaseDecrease({
         onClick={() => {
           setCart(addItemToCart(cart, products[id]));
         }}>
-        +
+        <FaPlus />
       </button>
     </div>
   );
