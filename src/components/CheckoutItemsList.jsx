@@ -5,7 +5,7 @@ import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
 
-export default function CheckoutItemsList({ discountPrice, setDiscountPrice, discountRate }) {
+export default function CheckoutItemsList({ discountPrice, discountRate }) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
   const { cart: cartItems } = ProductsData;
   // const cart = checkoutItems;
@@ -22,13 +22,11 @@ export default function CheckoutItemsList({ discountPrice, setDiscountPrice, dis
           <th scope="row">{index + 1}</th>
           <td>{name}</td>
           <td>
-            <BtnIncreaseDecrease
-              quantity={quantity}
-              id={id}
-              setDiscountPrice={setDiscountPrice}
-            />
+            <BtnIncreaseDecrease quantity={quantity} id={id} />
           </td>
-          <td className="text-right">{(price * quantity * discountRate).toFixed(2)} SEK</td>
+          <td className="text-right">
+            {(price * quantity * discountRate).toFixed(2)} SEK
+          </td>
         </tr>
       ))
       /* Object.entries(cart).map((product, index) => {
@@ -67,9 +65,20 @@ export default function CheckoutItemsList({ discountPrice, setDiscountPrice, dis
         <tfoot>
           <tr>
             <td colSpan="5" className="text-right font-weight-bold">
-               Total Price: {(cartTotalPrice(cartItems)* discountRate).toFixed(2)} SEK 
+              {discountRate !== 1 ? (
+                <small>
+                  <span className="discount-price mr-5">
+                    Original Price:
+                    <del className="font-italic ml-1">{discountPrice} SEK</del>
+                    <span className="ml-2">Discount: {discountRate}</span>
+                  </span>
+                </small>
+              ) : (
+                <span className="discount-price d-none">{discountPrice}</span>
+              )}
+              Total Price:
+              {(cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
               {/* Total Price: {discountPrice} SEK */}
-              <span className="discount-price d-none">{discountPrice}</span>
             </td>
           </tr>
         </tfoot>

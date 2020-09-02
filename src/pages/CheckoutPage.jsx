@@ -18,7 +18,8 @@ export default function CheckoutPage() {
         setDiscountPrice={setDiscountPrice}
       />
       <CustomerOrderForm
-        setDiscountRate={setDiscountRate} discountRate={discountRate}
+        setDiscountRate={setDiscountRate}
+        discountRate={discountRate}
         discountPrice={discountPrice}
         setDiscountPrice={setDiscountPrice}
       />

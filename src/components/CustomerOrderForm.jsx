@@ -1,11 +1,11 @@
 import React, { useRef, useState, useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
-import { Button,Modal } from 'react-bootstrap'
+import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CustomerOrderForm({
   discountPrice,
-  setDiscountPrice,
+  // setDiscountPrice,
   setDiscountRate,
   discountRate,
 }) {
@@ -17,13 +17,8 @@ export default function CustomerOrderForm({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
-
-
   let data = { order: cart };
   const nameInput = useRef();
-  // const emailInput = useRef();
-  // const addressInput = useRef();
   const couponInput = useRef();
   const SEND_ORDER_URL =
     "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/nametobedecided.json";
@@ -31,17 +26,14 @@ export default function CustomerOrderForm({
 
   function handleUserDeliveryInfo() {
     const nameValue = nameInput.current.value; // string
-    // const emailValue = emailInput.current.value;
-    // const addressValue = addressInput.current.value;
     const couponValue = couponInput.current.value;
     data = {
       ...data,
       username: nameValue,
-      // email: emailValue,
-      // address: addressValue,
       coupon: couponValue,
       price: discountPrice,
       discountRate: discountRate,
+      finalPrice: discountPrice * discountRate,
     };
     // console.log(nameValue, emailValue, addressValue, couponValue);
     console.log(data);
@@ -66,19 +58,14 @@ export default function CustomerOrderForm({
         // BLACKFRIDAY
       });
   }
-  
+
   function isCouponValid(value) {
     // return Object.keys(couponCodes).includes(value);
     if (Object.keys(couponCodes).includes(value)) {
       // console.log(couponCodes[value].discount); // discount rate
       setDiscountRate(couponCodes[value].discount);
-      setDiscountPrice(
-        (discountPrice * couponCodes[value].discount).toFixed(2)
-      );
       setDisabledClick(true);
-      // console.log(disabledClick);
     }
-    // now can check if it's valid coupon, then need to do the math.
   }
 
   return (
@@ -100,34 +87,6 @@ export default function CustomerOrderForm({
           />
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            required
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            ref={emailInput}
-            placeholder="Enter email"
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
-          </small>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="addressInput">Delivery Address</label>
-          <input
-            type="text"
-            required
-            className="form-control"
-            id="addressInput"
-            ref={addressInput}
-            placeholder="Address"
-          />
-        </div> */}
-
         <div className="form-group row">
           <input
             type="text"
@@ -137,24 +96,40 @@ export default function CustomerOrderForm({
             placeholder="Coupon"
           />
           <label
-            className="form-check-label col ml-5 align-middle"
-            htmlFor="couponCheck"
-            disabled={disabledClick}>
+            className="form-check-label col-2 ml-5 align-middle"
+            htmlFor="couponCheck">
             <input
               type="checkbox"
               className="form-check-input "
               id="couponCheck"
-              disabled={disabledClick}
+              // disabled={disabledClick}
               onClick={() => {
                 console.log(data);
-                // console.log(isCouponValid(couponInput.current.value));
                 isCouponValid(couponInput.current.value);
-                // TODO: check if it is valid coupon, if so reduce total amount;
-                // PROBLEM: how to unclick and recalculate discount price.
+                // setDisabledClick(true)
+                if (discountRate !== 1) {
+                  setDiscountRate(1);
+                  couponInput.current.value = "";
+                }
               }}
             />
             Check me out
           </label>
+          {couponInput.current !== undefined ? (
+            <input
+              type="text"
+              readOnly
+              placeholder={`You have chosen to use coupon ${couponInput.current.value}`}
+              className="form-check-label col-4 align-middle form-control "
+            />
+          ) : (
+            <input
+              type="text"
+              readOnly
+              placeholder={`Not valid coupon`}
+              className="form-check-label col-4 align-middle form-control "
+            />
+          )}
         </div>
         <button
           type="submit"
@@ -165,37 +140,34 @@ export default function CustomerOrderForm({
             // console.log(couponInput.current.value);
             handleUserDeliveryInfo();
             //handlePostMessage
-          }} onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.onCancel() }}  
-          onClick={handleShow}
-          >
+          }}
+          /* onClick={() => {
+            if (window.confirm("Are you sure you wish to delete this item?"))
+              this.onCancel();
+          }}
+          onClick={handleShow} */
+        >
           Submit
         </button>
 
-
-
-
         <>
-     {/*
+          {/*
       <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
      */}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose} >
-            Go back home
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-
-    
-
-
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirmation</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={handleClose}>
+                Go back home
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </>
       </form>
     </div>
   );

@@ -4,7 +4,7 @@ import "./LayoutSimple.styles.scss";
 import { getCartItemsCount } from "./utilities";
 import { ProductsContext } from "../contexts/GlobalContext";
 import CartDropDown from "./CartDropDown";
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function LayoutSimple({ children }) {
   const { cart, showCart, setShowCart } = useContext(ProductsContext);
@@ -18,9 +18,10 @@ export default function LayoutSimple({ children }) {
     <div>
       <header className="stickyheader">
         <nav className="navbar sticky-top navbar-light bg-light justify-content-between">
-
           <div>
-            <Link to="/" className="navbar-brand">ShopName</Link>
+            <Link to="/" className="navbar-brand">
+              ShopName
+            </Link>
             <Link to="/products">Products</Link>
           </div>
 
@@ -28,11 +29,11 @@ export default function LayoutSimple({ children }) {
             <button
               className="btn btn-outline-primary my-2 my-sm-0"
               onClick={() => toggleCartDisplay()}>
-              <FaShoppingCart /><span className="cart-count">{cartItemsAmount}</span>
+              <FaShoppingCart />
+              <span className="cart-count">{cartItemsAmount}</span>
             </button>
             <CartDropDown />
           </div>
-
         </nav>
       </header>
       <div className="container">{children}</div>

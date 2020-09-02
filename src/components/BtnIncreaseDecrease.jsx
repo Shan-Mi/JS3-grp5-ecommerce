@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
-import { addItemToCart, removeItemFromCart, cartTotalPrice } from "./utilities";
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { addItemToCart, removeItemFromCart } from "./utilities";
+import { FaPlus, FaMinus } from "react-icons/fa";
 
-export default function BtnIncreaseDecrease({
-  quantity,
-  id,
-  setDiscountPrice,
-}) {
+export default function BtnIncreaseDecrease({ quantity, id }) {
   const { cart, setCart, products } = useContext(ProductsContext);
-
-  useEffect(() => {
-    setDiscountPrice(cartTotalPrice(cart));
-  }, [cart, setDiscountPrice]);
 
   return (
     <div>

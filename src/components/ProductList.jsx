@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import ProductCard from "./ProductCard";
+import WithSpinner from "./withSpinner/WithSpinner";
 
-export default function ProductList() {
-  const { products }  = useContext(ProductsContext);
+const ProductList = ({ isLoading }) => {
+  const { products } = useContext(ProductsContext);
   // const { products } = ProductsData;
   // products && console.log(Object.entries(products));
 
@@ -31,7 +32,9 @@ export default function ProductList() {
         })}
     </div>
   );
-}
+};
+
+export default WithSpinner(ProductList);
 
 // Loopa ut produkterna
 // kompnenten ProductCard

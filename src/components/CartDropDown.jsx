@@ -37,8 +37,7 @@ export default function CartDropDown() {
             className="btn btn-outline-dark"
             onClick={() => {
               toggleCartDisplay();
-            }}
-          >
+            }}>
             Go to Checkout
           </button>
         </Link>
