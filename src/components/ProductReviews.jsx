@@ -1,4 +1,5 @@
 import React from "react";
+import { ImStarFull } from "react-icons/im";
 
 export default function ProductReviews({ reviews, id }) {
   console.log(reviews);
@@ -24,6 +25,7 @@ export default function ProductReviews({ reviews, id }) {
             <div className="card-body">
               <h3 className="card-title">{title}</h3>
               <p> {rating}/5</p>
+              <ImStarFull />
               <p>{description}</p>
             </div>
             <div className="card-footer text-muted">
