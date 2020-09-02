@@ -25,7 +25,7 @@ const ProductInfo = ({ isLoading, product }) => {
           <h1>{name}</h1>
           <div className="row">
             <div className="col-sm">
-              <h5>Price: {price}</h5>
+              <h5>Price: {price} SEK</h5>
               <h5>Rating: {rating}</h5>
               <h5>Stock: {stock}</h5>
             </div>
