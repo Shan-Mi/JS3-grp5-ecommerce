@@ -131,7 +131,7 @@ export default function CustomerOrderForm({
         </div>
         <button
           ref={submitBtn}
-          disabled={cart.length == 0 ? true : false}
+          disabled={cart.length === 0 ? true : false}
           type="submit"
           className="btn btn-primary"
           variant="primary"
