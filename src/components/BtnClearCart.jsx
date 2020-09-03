@@ -16,7 +16,7 @@ const BtnClearCart = ({ dropdownDelBtn }) => {
         setCart(clearCart(cart));
       }}
     >
-     <MdDeleteForever />
+      <MdDeleteForever />
     </button>
   ) : (
     <button

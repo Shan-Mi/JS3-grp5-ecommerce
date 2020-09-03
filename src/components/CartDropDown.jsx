@@ -4,7 +4,6 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { cartTotalPrice } from "./utilities";
 import BtnClearCart from "./BtnClearCart";
-import { MdDeleteForever } from "react-icons/md";
 
 export default function CartDropDown() {
   const { cart: cartItems, showCart, setShowCart } = useContext(
@@ -31,21 +30,23 @@ export default function CartDropDown() {
             />
           ))}
         </div>
-        <p className="font-weight-bold">
-          Total Price: {cartTotalPrice(cartItems)} SEK
-        </p>
-        <Link to="/checkout">
-          <button
-            className="btn btn-outline-dark"
-            onClick={() => {
-              toggleCartDisplay();
-            }}
-          >
-            Go to Checkout
-          </button>
-        </Link>
+        <div className="cart-dropdown-btns-container">
+          <p className="font-weight-bold">
+            Total Price: {cartTotalPrice(cartItems)} SEK
+          </p>
+          <Link to="/checkout">
+            <button
+              className="btn btn-outline-dark"
+              onClick={() => {
+                toggleCartDisplay();
+              }}
+            >
+              Go to Checkout
+            </button>
+          </Link>
 
-        <BtnClearCart dropdownDelBtn={true} />
+          <BtnClearCart dropdownDelBtn={true} />
+        </div>
       </div>
     )
   );
