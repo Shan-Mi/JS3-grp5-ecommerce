@@ -11,12 +11,9 @@ export default function CustomerOrderForm({
   discountRate,
 }) {
   const { cart, couponCodes, setCart } = useContext(ProductsContext);
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
   let data = { order: cart };
   const nameInput = useRef();
   const couponInput = useRef();
@@ -41,8 +38,6 @@ export default function CustomerOrderForm({
 
   function handlePostMessage() {
     const orderData = handleUserDeliveryInfo();
-    console.log(orderData);
-
     const url = SEND_ORDER_URL;
 
     fetch(url, {
@@ -51,8 +46,6 @@ export default function CustomerOrderForm({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data is sent");
-        console.log(data);
         handleShow();
         setCart(clearCart(cart));
         nameInput.current.value = "";
@@ -66,7 +59,6 @@ export default function CustomerOrderForm({
   }
 
   function handleOnChange() {
-    console.log(submitBtn);
     if (nameInput.current.value.length >= 3 && cart.length !== 0) {
       submitBtn.current.disabled = false;
     } else {
@@ -137,7 +129,6 @@ export default function CustomerOrderForm({
             placeholder="Enter Fullname"
           />
         </div>
-        {console.log(cart)}
         <button
           ref={submitBtn}
           disabled={cart.length == 0 ? true : false}
@@ -146,7 +137,6 @@ export default function CustomerOrderForm({
           variant="primary"
           onClick={(e) => {
             e.preventDefault();
-
             handlePostMessage();
           }}
         >
@@ -167,6 +157,3 @@ export default function CustomerOrderForm({
     </div>
   );
 }
-
-// input-fält för att fylla i för och efternamn
-// en confirm-order-knapp, som gör en POST till API:et

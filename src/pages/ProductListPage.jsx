@@ -1,4 +1,3 @@
-// länka in ProductList
 import React, { useContext } from "react";
 import ProductList from "../components/ProductList";
 import { ProductsContext } from "../contexts/GlobalContext";

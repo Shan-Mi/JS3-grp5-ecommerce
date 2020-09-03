@@ -9,10 +9,10 @@ export default function BtnDelete({id}) {
 
   return (
       <button
-            className="btn btn-outline-danger btn-sm"
-            onClick={() => {
-              setCart(deleteItemFromCart(cart, products[id]),
-              );
-            }}><FaTrashAlt /></button>
+        className="btn btn-outline-danger btn-sm"
+        onClick={() => {
+          setCart(deleteItemFromCart(cart, products[id]),
+        );
+      }}><FaTrashAlt /></button>
   )
 }

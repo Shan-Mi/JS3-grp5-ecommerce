@@ -12,7 +12,6 @@ export default function ProductDetailPage() {
   if (products) {
     product = products[id];
   }
-  // console.log(products);
   return (
     <div>
       <ProductInfo product={product} isLoading={isLoading} />
@@ -20,5 +19,3 @@ export default function ProductDetailPage() {
     </div>
   );
 }
-
-// Länka in ProductInfo och ProductReviews

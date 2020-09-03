@@ -7,10 +7,8 @@ import BtnClearCart from "./BtnClearCart";
 import { Link } from "react-router-dom";
 
 export default function CheckoutItemsList({ discountPrice, discountRate }) {
-  const ProductsData = useContext(ProductsContext); // using dummy data just for now
+  const ProductsData = useContext(ProductsContext); 
   const { cart: cartItems } = ProductsData;
-  // const cart = checkoutItems;
-  // const cartItems = window.localStorage.getItem('cart')
 
   function renderTableRows() {
     return (
@@ -79,7 +77,6 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
               )}
               Total Price:
               {" " + (cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
-              {/* Total Price: {discountPrice} SEK */}
             </td>
           </tr>
         </tfoot>
@@ -89,9 +86,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
 }
 
 const imageStyle = {
-  /*  width: "50%", */
   float: "left",
   maxHeight: "30px",
   objectFit: "cover",
 };
-// loopa ut alla produkter som finns i cart-context

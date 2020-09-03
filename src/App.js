@@ -11,9 +11,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 function App() {
   return (
     <div className="App">
-      {/* <header>
-        <p>E-commerce</p>
-      </header> */}
       <Switch>
         <Route path="/" exact>
           <LayoutSimple>

@@ -4,7 +4,6 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import { clearCart } from "./utilities";
 import "./BtnClearCart.styles.scss";
 import { MdDeleteForever } from "react-icons/md";
-// import {BtnClearCartContainer} from './BtnClearCart.styles'
 
 const BtnClearCart = ({ dropdownDelBtn }) => {
   const { cart, setCart } = useContext(ProductsContext);

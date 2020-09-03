@@ -22,10 +22,8 @@ export default function ProductReviews({ reviews, id }) {
     const productReviews = Object.entries(reviews).find(
       (reviewArray) => reviewArray[0] === id
     );
-    console.log(productReviews);
 
     if (productReviews) {
-      console.log("there is review");
       return productReviews[1].map((review, index) => {
         const key = index;
         const author = review.author.name;
@@ -59,6 +57,3 @@ export default function ProductReviews({ reviews, id }) {
     </div>
   );
 }
-
-// Hämta reviews om det finns till den produkten
-// loopa ut review-cards

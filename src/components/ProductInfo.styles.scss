@@ -3,12 +3,9 @@
   margin-top: 3rem;
   position: relative;
   flex-direction: column;
-
   .product-detail-image {
     flex-basis: 50%;
-
     .product-detail-img {
-      // width: 250px;
       max-width: 100%;
     }
   }
@@ -20,19 +17,15 @@
     align-items: flex-start;
     justify-content: center;
     text-align: left;
-    /*  padding-left: 3rem; */
-
     span {
       font-size: 2rem;
     }
-
     h1 {
       margin-bottom: 1rem;
     }
     h5 {
       margin-bottom: 1rem;
     }
-
     .addToCartBtn {
       @media screen and (max-width: 570px) {
         align-self: center;

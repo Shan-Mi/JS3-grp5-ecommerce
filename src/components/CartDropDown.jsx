@@ -51,7 +51,3 @@ export default function CartDropDown() {
     )
   );
 }
-
-// loopa ut produkter från cart-context
-// visa totalsumma
-// ha en "go to checkout"-knapp

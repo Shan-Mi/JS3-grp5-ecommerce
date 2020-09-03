@@ -5,7 +5,7 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import { cartTotalPrice } from "../components/utilities";
 
 export default function CheckoutPage() {
-  const ProductsData = useContext(ProductsContext); // using dummy data just for now
+  const ProductsData = useContext(ProductsContext);
   const { cart: cartItems } = ProductsData;
   const [discountPrice, setDiscountPrice] = useState(cartTotalPrice(cartItems));
   const [discountRate, setDiscountRate] = useState(1);
@@ -26,5 +26,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-// länka in CheckoutItemsList, TotalPrice, CustomerOrderForm

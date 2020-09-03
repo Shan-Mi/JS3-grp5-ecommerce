@@ -5,8 +5,6 @@ import WithSpinner from "./withSpinner/WithSpinner";
 
 const ProductList = ({ isLoading }) => {
   const { products } = useContext(ProductsContext);
-  // const { products } = ProductsData;
-  // products && console.log(Object.entries(products));
 
   return (
     <div className="row">
@@ -35,6 +33,3 @@ const ProductList = ({ isLoading }) => {
 };
 
 export default WithSpinner(ProductList);
-
-// Loopa ut produkterna
-// kompnenten ProductCard

@@ -32,7 +32,3 @@ export default function ProductCard({
     </div>
   );
 }
-
-// bygger upp kortet i jsx
-// lägg in info från props
-//länka in BtnAddToCart

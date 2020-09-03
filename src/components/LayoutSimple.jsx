@@ -41,5 +41,3 @@ export default function LayoutSimple({ children }) {
     </div>
   );
 }
-
-// lägg in header med namn på webbsidan och en cart-knapp

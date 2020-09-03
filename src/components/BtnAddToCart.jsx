@@ -16,5 +16,3 @@ export default function BtnAddToCart({ id }) {
     </button>
   );
 }
-
-// Lägg in aktuell produkt i ev. cart-context

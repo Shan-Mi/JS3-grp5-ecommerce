@@ -1,5 +1,4 @@
 // funktionen totalPrice
-
 export function cartTotalPrice(cart) {
   const totalPrice =
     cart &&
@@ -13,7 +12,6 @@ export function cartTotalPrice(cart) {
 }
 
 /* functions for cart: adding/ deleting/ emptying */
-
 export const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToAdd.id
@@ -21,7 +19,6 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
-    // added && cartItem.stock > cartItem.quantity to make sure stock is enpugh to fill order
       cartItem.id === cartItemToAdd.id && cartItem.stock > cartItem.quantity
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem

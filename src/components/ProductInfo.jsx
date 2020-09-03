@@ -39,8 +39,3 @@ const ProductInfo = ({ isLoading, product }) => {
 };
 
 export default WithSpinner(ProductInfo);
-
-/* // Rita upp produkt-info med jsx mha props
-// Detta är detailed view
-// alltså bild, pris mm
- */
