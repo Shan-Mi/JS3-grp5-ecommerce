@@ -3,6 +3,7 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { cartTotalPrice } from "./utilities";
+import BtnClearCart from "./BtnClearCart";
 
 export default function CartDropDown() {
   const { cart: cartItems, showCart, setShowCart } = useContext(
@@ -41,6 +42,8 @@ export default function CartDropDown() {
             Go to Checkout
           </button>
         </Link>
+
+        <BtnClearCart />
       </div>
     )
   );

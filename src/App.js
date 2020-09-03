@@ -6,6 +6,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import Welcomepage from "./pages/WelcomePage";
 import LayoutSimple from "./components/LayoutSimple";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -13,7 +14,6 @@ function App() {
       {/* <header>
         <p>E-commerce</p>
       </header> */}
-
       <Switch>
         <Route path="/" exact>
           <LayoutSimple>
@@ -42,6 +42,8 @@ function App() {
             <CheckoutPage />
           </LayoutSimple>
         </Route>
+
+        <Route path="*" component={NotFoundPage} />
       </Switch>
     </div>
   );
