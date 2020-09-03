@@ -70,11 +70,64 @@ export default function CustomerOrderForm({
 
   return (
     <div className="mt-5">
-      <hr />
       <form className="text-left mt-5">
+
+        <hr />
+        <div className="form-group row">
+
+          <input
+            type="text"
+            className="form-control col-3 ml-3"
+            id="coupon"
+            ref={couponInput}
+            placeholder="Coupon Code"
+          />
+            <button
+              className="btn btn-outline-primary"
+              id="couponCheck"
+              // disabled={disabledClick}
+              onClick={(e) => {
+                e.preventDefault();
+                // console.log(data);
+                
+                isCouponValid(couponInput.current.value);
+                // setDisabledClick(true)
+                if (discountRate !== 1) {
+                  setDiscountRate(1);
+                  couponInput.current.value = "";
+                }
+              }}
+            >Apply Code</button>
+
+            {couponInput.current !== undefined ? (
+              <input
+                type="text"
+                readOnly
+                placeholder={`Active code: ${couponInput.current.value}`}
+                className="form-check-label col-5 align-middle border-0 text-right"
+              />
+            ) : (
+              <input
+                type="text"
+                readOnly
+                placeholder={`No valid coupon used`}
+                className="form-check-label col-5 align-middle border-0 text-right"
+              />
+            )}
+
+          {/* { couponInput.current !== undefined ? (
+            <p className="col-4 text-right">{couponInput.current.value}</p>
+          ) : (
+            <p className="col-4 text-right" >No valid coupon added</p>
+          )} */}
+
+        </div> 
+        
+        <hr />
+
         <div className="form-group">
           <label htmlFor="nameInput" className="">
-            Name
+            Fullname
           </label>
           <input
             type="text"
@@ -83,54 +136,10 @@ export default function CustomerOrderForm({
             id="nameInput"
             aria-describedby="nameInput"
             ref={nameInput}
-            placeholder="Enter Forename and Aftername"
+            placeholder="Enter Fullname"
           />
         </div>
 
-        <div className="form-group row">
-          <input
-            type="text"
-            className="form-control col-2 ml-3"
-            id="coupon"
-            ref={couponInput}
-            placeholder="Coupon"
-          />
-          <label
-            className="form-check-label col-2 ml-5 align-middle"
-            htmlFor="couponCheck">
-            <input
-              type="checkbox"
-              className="form-check-input "
-              id="couponCheck"
-              // disabled={disabledClick}
-              onClick={() => {
-                // console.log(data);
-                isCouponValid(couponInput.current.value);
-                // setDisabledClick(true)
-                if (discountRate !== 1) {
-                  setDiscountRate(1);
-                  couponInput.current.value = "";
-                }
-              }}
-            />
-            Check me out
-          </label>
-          {couponInput.current !== undefined ? (
-            <input
-              type="text"
-              readOnly
-              placeholder={`You have chosen to use coupon ${couponInput.current.value}`}
-              className="form-check-label col-4 align-middle form-control "
-            />
-          ) : (
-            <input
-              type="text"
-              readOnly
-              placeholder={`Not valid coupon`}
-              className="form-check-label col-4 align-middle form-control "
-            />
-          )}
-        </div>
         <button
           type="submit"
           className="btn btn-primary"
@@ -147,7 +156,7 @@ export default function CustomerOrderForm({
           }}
           onClick={handleShow} */
         >
-          Submit
+          Place Order
         </button>
 
         <>

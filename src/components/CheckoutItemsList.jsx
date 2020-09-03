@@ -71,7 +71,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
                   <span className="discount-price mr-5">
                     Original Price:
                     <del className="font-italic ml-1">{discountPrice} SEK</del>
-                    <span className="ml-2">Discount: {discountRate}</span>
+                    <span className="ml-2">Discount: { ((1 - discountRate)*100).toFixed() }%</span>
                   </span>
                 </small>
               ) : (
