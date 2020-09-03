@@ -2,7 +2,7 @@
 
 [Demo-live-version](https://js3-group5-eshop.herokuapp.com/)
 
-#### Name: to be given
+#### Name: *Mr. Misc*
 
 ## Tools and etc
 - create-react-app
