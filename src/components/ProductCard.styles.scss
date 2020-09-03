@@ -1,5 +1,23 @@
 .card-img-top {
   width: 100%;
-  height: 15vw;
+  height: 60vw;
   object-fit: cover;
+}
+
+@media screen and (min-width: 566px) {
+  .card-img-top {
+    height: 40vw;
+  }
+}
+
+@media screen and (min-width: 766px) {
+  .card-img-top {
+    height: 20vw;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card-img-top {
+    height: 15vw;
+  }
 }
