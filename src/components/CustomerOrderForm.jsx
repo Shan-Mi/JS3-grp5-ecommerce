@@ -145,8 +145,8 @@ export default function CustomerOrderForm({
           /* onClick={() => {
             if (window.confirm("Are you sure you wish to delete this item?"))
               this.onCancel();
-          }}
-          onClick={handleShow} */
+          }}*/
+          onClick={handleShow} 
         >
           Submit
         </button>
