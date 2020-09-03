@@ -2,18 +2,30 @@ import React from "react";
 import { useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { clearCart } from "./utilities";
+import "./BtnClearCart.styles.scss";
+import { MdDeleteForever } from "react-icons/md";
 // import {BtnClearCartContainer} from './BtnClearCart.styles'
 
-const BtnClearCart = () => {
+const BtnClearCart = ({ dropdownDelBtn }) => {
   const { cart, setCart } = useContext(ProductsContext);
 
-  return (
+  return dropdownDelBtn ? (
     <button
-      className="btn btn-outline-danger btn-sm"
+      className="btn dropdown-delBtn"
       onClick={() => {
         setCart(clearCart(cart));
-      }}>
-      Clear Cart
+      }}
+    >
+     <MdDeleteForever />
+    </button>
+  ) : (
+    <button
+      className="btn btn-outline-danger "
+      onClick={() => {
+        setCart(clearCart(cart));
+      }}
+    >
+      <MdDeleteForever /> Empty All
     </button>
   );
 };

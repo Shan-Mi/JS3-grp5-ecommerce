@@ -1,0 +1,27 @@
+.dropdown-delBtn {
+  // width: 50px;
+  place-self: center;
+  margin-bottom: -1rem;
+  padding: 0;
+  position: relative;
+
+  &:hover::before {
+    content: "Delete All";
+    position: absolute;
+    font-style: italic;
+    right: -60px;
+    top: 10px;
+  }
+
+  svg {
+    filter: invert(35%) sepia(34%) saturate(3756%) hue-rotate(331deg)
+      brightness(86%) contrast(102%);
+    font-size: 25px;
+
+    &:hover {
+      transform: scale(1.5);
+      transition: transform 0.1s ease-in-out;
+    }
+    transition: transform 0.1s ease-in-out;
+  }
+}
