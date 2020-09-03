@@ -77,7 +77,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
                 <span className="discount-price d-none">{discountPrice}</span>
               )}
               Total Price:
-              {(cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
+              {" " + (cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
               {/* Total Price: {discountPrice} SEK */}
             </td>
           </tr>
