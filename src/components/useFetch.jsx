@@ -24,6 +24,7 @@ export default function useFetch(url, dependencies) {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, dependencies);
 
   return [products, reviews, couponCodes, isLoading];
