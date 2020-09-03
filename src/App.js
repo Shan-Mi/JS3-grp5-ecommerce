@@ -44,7 +44,7 @@ function App() {
           path="/checkout"
           exact
           render={() =>
-            cart.length == 0 ? (
+            cart.length === 0 ? (
               <Redirect to="/products" />
             ) : (
               <LayoutSimple>
