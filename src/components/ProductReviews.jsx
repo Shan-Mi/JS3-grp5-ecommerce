@@ -43,7 +43,7 @@ export default function ProductReviews({ reviews, id }) {
               <p>{description}</p>
             </div>
             <div className="card-footer text-muted">
-              Posted: {date} Author: {author}
+              Posted: {date} | Author: {author}
             </div>
           </div>
         );
