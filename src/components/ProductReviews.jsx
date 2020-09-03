@@ -8,7 +8,7 @@ export default function ProductReviews({ reviews, id }) {
     for (let i = 1; i <= rating; i++) {
       starRating.push(<ImStarFull key={i} />);
     }
-    if (rating != 5) {
+    if (rating !== 5) {
       const emptyStars = 5 - rating;
 
       for (let i = 1; i <= emptyStars; i++) {

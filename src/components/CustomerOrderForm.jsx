@@ -140,7 +140,7 @@ export default function CustomerOrderForm({
         {console.log(cart)}
         <button
           ref={submitBtn}
-          disabled={cart.length == 0 ? true : false}
+          disabled={cart.length === 0 ? true : false}
           type="submit"
           className="btn btn-primary"
           variant="primary"
