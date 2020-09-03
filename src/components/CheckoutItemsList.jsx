@@ -4,6 +4,7 @@ import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
+import {Link} from 'react-router-dom';
 
 export default function CheckoutItemsList({ discountPrice, discountRate }) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
@@ -20,7 +21,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
             <BtnDelete id={id} />
           </td>
           <th scope="row">{index + 1}</th>
-          <td>{name}</td>
+          <td><Link to={`/products/${id}`}>{name}</Link></td>
           <td>
             <BtnIncreaseDecrease quantity={quantity} id={id} />
           </td>
@@ -77,7 +78,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
                 <span className="discount-price d-none">{discountPrice}</span>
               )}
               Total Price:
-              {(cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
+              {" " + (cartTotalPrice(cartItems) * discountRate).toFixed(2)} SEK
               {/* Total Price: {discountPrice} SEK */}
             </td>
           </tr>
