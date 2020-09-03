@@ -11,7 +11,7 @@ export default function CheckoutPage() {
   const [discountRate, setDiscountRate] = useState(1);
   return (
     <div>
-      This is check out page
+      <h1>Checkout</h1>
       <CheckoutItemsList
         discountRate={discountRate}
         discountPrice={discountPrice}

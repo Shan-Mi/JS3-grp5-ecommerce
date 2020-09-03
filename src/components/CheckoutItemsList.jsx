@@ -4,7 +4,7 @@ import { cartTotalPrice } from "./utilities";
 import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function CheckoutItemsList({ discountPrice, discountRate }) {
   const ProductsData = useContext(ProductsContext); // using dummy data just for now
@@ -15,34 +15,28 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
   function renderTableRows() {
     return (
       cartItems &&
-      cartItems.map(({ id, name, price, quantity }, index) => (
-        <tr key={id}>
-          <td>
-            <BtnDelete id={id} />
-          </td>
-          <th scope="row">{index + 1}</th>
-          <td><Link to={`/products/${id}`}>{name}</Link></td>
-          <td>
-            <BtnIncreaseDecrease quantity={quantity} id={id} />
-          </td>
-          <td className="text-right">
-            {(price * quantity * discountRate).toFixed(2)} SEK
-          </td>
-        </tr>
-      ))
-      /* Object.entries(cart).map((product, index) => {
-        const key = product[1].id;
-        const name = product[1].name;
-        const price = product[1].price;
-
-        return (
-          <tr key={key}>
+      cartItems.map(
+        ({ id, name, price, quantity, images: [{ alt, src }] }, index) => (
+          <tr key={id}>
+            <td>
+              <BtnDelete id={id} />
+            </td>
             <th scope="row">{index + 1}</th>
-            <td>{name}</td>
-            <td className="text-right">{price} SEK</td>
+            <th scope="row">
+              <img src={src.small} alt={alt} style={imageStyle} />
+            </th>
+            <td>
+              <Link to={`/products/${id}`}>{name}</Link>
+            </td>
+            <td>
+              <BtnIncreaseDecrease quantity={quantity} id={id} />
+            </td>
+            <td className="text-right">
+              {(price * quantity * discountRate).toFixed(2)} SEK
+            </td>
           </tr>
-        );
-      }) */
+        )
+      )
     );
   }
 
@@ -51,10 +45,14 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
       <table className="table table-sm table-hover ">
         <thead className="text-left">
           <tr>
-            <th scope="col">
+            <th colSpan="6" className="text-right">
               <BtnClearCart />
             </th>
+          </tr>
+          <tr>
+            <th scope="col"></th>
             <th scope="col">#</th>
+            <th scope="col"></th>
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
             <th scope="col" className="text-right">
@@ -65,13 +63,15 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
         <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
         <tfoot>
           <tr>
-            <td colSpan="5" className="text-right font-weight-bold">
+            <td colSpan="6" className="text-right font-weight-bold">
               {discountRate !== 1 ? (
                 <small>
                   <span className="discount-price mr-5">
                     Original Price:
                     <del className="font-italic ml-1">{discountPrice} SEK</del>
-                    <span className="ml-2">Discount: { ((1 - discountRate)*100).toFixed() }%</span>
+                    <span className="ml-2">
+                      Discount: {((1 - discountRate) * 100).toFixed()}%
+                    </span>
                   </span>
                 </small>
               ) : (
@@ -87,4 +87,11 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
     </div>
   );
 }
+
+const imageStyle = {
+  /*  width: "50%", */
+  float: "left",
+  maxHeight: "30px",
+  objectFit: "cover",
+};
 // loopa ut alla produkter som finns i cart-context

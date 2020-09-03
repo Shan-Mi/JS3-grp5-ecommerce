@@ -20,7 +20,7 @@ export default function LayoutSimple({ children }) {
         <nav className="navbar sticky-top navbar-light bg-light justify-content-between">
           <div>
             <Link to="/" className="navbar-brand">
-              ShopName
+              Mr. Misc
             </Link>
             <Link to="/products">Products</Link>
           </div>
@@ -28,7 +28,8 @@ export default function LayoutSimple({ children }) {
           <div>
             <button
               className="btn btn-outline-primary my-2 my-sm-0"
-              onClick={() => toggleCartDisplay()}>
+              onClick={() => toggleCartDisplay()}
+            >
               <FaShoppingCart />
               <span className="cart-count">{cartItemsAmount}</span>
             </button>

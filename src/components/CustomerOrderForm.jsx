@@ -2,15 +2,15 @@ import React, { useRef, useState, useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { Button, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { clearCart } from "./utilities";
+import { Link } from "react-router-dom";
 
 export default function CustomerOrderForm({
   discountPrice,
-  // setDiscountPrice,
   setDiscountRate,
   discountRate,
 }) {
-  const { cart, couponCodes } = useContext(ProductsContext);
-  // const [disabledClick, setDisabledClick] = useState("");
+  const { cart, couponCodes, setCart } = useContext(ProductsContext);
 
   const [show, setShow] = useState(false);
 
@@ -20,12 +20,12 @@ export default function CustomerOrderForm({
   let data = { order: cart };
   const nameInput = useRef();
   const couponInput = useRef();
+  const submitBtn = useRef();
   const SEND_ORDER_URL =
-    "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/nametobedecided.json";
-  // need a decend name, lol
+    "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/mrmisc.json";
 
   function handleUserDeliveryInfo() {
-    const nameValue = nameInput.current.value; // string
+    const nameValue = nameInput.current.value;
     const couponValue = couponInput.current.value;
     const orderData = {
       ...data,
@@ -35,8 +35,7 @@ export default function CustomerOrderForm({
       discountRate: discountRate,
       finalPrice: (discountPrice * discountRate).toFixed(2),
     };
-    // console.log(nameValue, emailValue, addressValue, couponValue);
-    console.log(orderData);
+
     return orderData;
   }
 
@@ -55,76 +54,72 @@ export default function CustomerOrderForm({
         console.log("data is sent");
         console.log(data);
         handleShow();
-        // messageInputField.current.value = "";
-        // empty all input area and localstorage
-        // BLACKFRIDAY
+        setCart(clearCart(cart));
+        nameInput.current.value = "";
       });
   }
 
   function isCouponValid(value) {
-    // return Object.keys(couponCodes).includes(value);
     if (Object.keys(couponCodes).includes(value)) {
-      // console.log(couponCodes[value].discount); // discount rate
       setDiscountRate(couponCodes[value].discount);
-      // setDisabledClick(true);
+    }
+  }
+
+  function handleOnChange() {
+    console.log(submitBtn);
+    if (nameInput.current.value.length >= 3 && cart.length !== 0) {
+      submitBtn.current.disabled = false;
+    } else {
+      submitBtn.current.disabled = true;
     }
   }
 
   return (
     <div className="mt-5">
       <form className="text-left mt-5">
-
         <hr />
         <div className="form-group row">
-
           <input
             type="text"
-            className="form-control col-3 ml-3"
+            className="form-control col-3 ml-3 mr-3"
             id="coupon"
             ref={couponInput}
             placeholder="Coupon Code"
           />
-            <button
-              className="btn btn-outline-primary"
-              id="couponCheck"
-              // disabled={disabledClick}
-              onClick={(e) => {
-                e.preventDefault();
-                // console.log(data);
-                
-                isCouponValid(couponInput.current.value);
-                // setDisabledClick(true)
-                if (discountRate !== 1) {
-                  setDiscountRate(1);
-                  couponInput.current.value = "";
-                }
-              }}
-            >Apply Code</button>
+          <button
+            className="btn btn-outline-primary"
+            id="couponCheck"
+            onClick={(e) => {
+              e.preventDefault();
 
-            {couponInput.current !== undefined ? (
-              <input
-                type="text"
-                readOnly
-                placeholder={`Active code: ${couponInput.current.value}`}
-                className="form-check-label col-5 align-middle border-0 text-right"
-              />
-            ) : (
-              <input
-                type="text"
-                readOnly
-                placeholder={`No valid coupon used`}
-                className="form-check-label col-5 align-middle border-0 text-right"
-              />
-            )}
+              isCouponValid(couponInput.current.value);
 
-          {/* { couponInput.current !== undefined ? (
-            <p className="col-4 text-right">{couponInput.current.value}</p>
+              if (discountRate !== 1) {
+                setDiscountRate(1);
+                couponInput.current.value = "";
+              }
+            }}
+          >
+            Apply Code
+          </button>
+
+          {couponInput.current !== undefined ? (
+            <input
+              type="text"
+              readOnly
+              placeholder={`Active code: ${couponInput.current.value}`}
+              className="form-check-label col-5 align-middle border-0 text-right"
+            />
           ) : (
-            <p className="col-4 text-right" >No valid coupon added</p>
-          )} */}
+            <input
+              type="text"
+              readOnly
+              placeholder={`No valid coupon used`}
+              className="form-check-label col-5 align-middle border-0 text-right"
+            />
+          )}
+        </div>
 
-        </div> 
-        
         <hr />
 
         <div className="form-group">
@@ -132,6 +127,7 @@ export default function CustomerOrderForm({
             Fullname
           </label>
           <input
+            onChange={handleOnChange}
             type="text"
             required
             className="form-control"
@@ -141,44 +137,33 @@ export default function CustomerOrderForm({
             placeholder="Enter Fullname"
           />
         </div>
-
+        {console.log(cart)}
         <button
+          ref={submitBtn}
+          disabled={cart.length == 0 ? true : false}
           type="submit"
           className="btn btn-primary"
           variant="primary"
           onClick={(e) => {
             e.preventDefault();
-            // console.log(couponInput.current.value);
 
             handlePostMessage();
           }}
-          /* onClick={() => {
-            if (window.confirm("Are you sure you wish to delete this item?"))
-              this.onCancel();
-          }}*/
         >
           Place Order
         </button>
-
-        <>
-          {/*
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-     */}
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Confirmation</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" /* onClick={handleClose} */>
-                Go back home
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </>
       </form>
+      <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
+        <Modal.Footer>
+          <Link to="/products">
+            <Button variant="primary">Continue Shopping</Button>
+          </Link>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

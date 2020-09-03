@@ -20,12 +20,12 @@ const BtnClearCart = ({ dropdownDelBtn }) => {
     </button>
   ) : (
     <button
-      className="btn btn-outline-danger "
+      className="btn btn-outline-danger text-right"
       onClick={() => {
         setCart(clearCart(cart));
       }}
     >
-      <MdDeleteForever /> Empty All
+      <MdDeleteForever /> Clear Cart
     </button>
   );
 };

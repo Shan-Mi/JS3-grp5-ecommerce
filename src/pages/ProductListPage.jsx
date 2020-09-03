@@ -7,7 +7,7 @@ const ProductListPage = () => {
   const { isLoading } = useContext(ProductsContext);
   return (
     <div>
-      This is productlistpage
+      <h1>Products</h1>
       <ProductList isLoading={isLoading} />
     </div>
   );
