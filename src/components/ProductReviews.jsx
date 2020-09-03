@@ -1,14 +1,19 @@
 import React from "react";
-import { ImStarFull, ImStarEmpty, ImStarHalf } from "react-icons/im";
+import { ImStarFull, ImStarEmpty } from "react-icons/im";
 
 export default function ProductReviews({ reviews, id }) {
   function ratingStars(rating) {
-    console.log(rating);
-    /*    <ImStarFull /> */
     let starRating = [];
 
     for (let i = 1; i <= rating; i++) {
       starRating.push(<ImStarFull key={i} />);
+    }
+    if (rating != 5) {
+      const emptyStars = 5 - rating;
+
+      for (let i = 1; i <= emptyStars; i++) {
+        starRating.push(<ImStarEmpty key={i} />);
+      }
     }
     return starRating;
   }
