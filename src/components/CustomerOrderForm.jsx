@@ -83,7 +83,7 @@ export default function CustomerOrderForm({
             id="nameInput"
             aria-describedby="nameInput"
             ref={nameInput}
-            placeholder="Enter Forename and Aftername"
+            placeholder="Enter first name and last name"
           />
         </div>
 
@@ -97,7 +97,8 @@ export default function CustomerOrderForm({
           />
           <label
             className="form-check-label col-2 ml-5 align-middle"
-            htmlFor="couponCheck">
+            htmlFor="couponCheck"
+          >
             <input
               type="checkbox"
               className="form-check-input "
