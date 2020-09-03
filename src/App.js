@@ -37,19 +37,11 @@ function App() {
           </LayoutSimple>
         </Route>
 
-        <Route
-          path="/checkout"
-          exact
-          render={() =>
-            cart.length === 0 ? (
-              <Redirect to="/products" />
-            ) : (
-              <LayoutSimple>
-                <CheckoutPage />
-              </LayoutSimple>
-            )
-          }
-        />
+        <Route path="/checkout" exact>
+          <LayoutSimple>
+            <CheckoutPage />
+          </LayoutSimple>
+        </Route>
 
         <Route path="*" component={NotFoundPage} />
       </Switch>
