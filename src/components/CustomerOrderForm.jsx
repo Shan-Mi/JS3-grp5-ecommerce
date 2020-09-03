@@ -27,7 +27,7 @@ export default function CustomerOrderForm({
   function handleUserDeliveryInfo() {
     const nameValue = nameInput.current.value; // string
     const couponValue = couponInput.current.value;
-    data = {
+    const orderData = {
       ...data,
       username: nameValue,
       coupon: couponValue,
@@ -36,23 +36,25 @@ export default function CustomerOrderForm({
       finalPrice: (discountPrice * discountRate).toFixed(2),
     };
     // console.log(nameValue, emailValue, addressValue, couponValue);
-    console.log(data);
+    console.log(orderData);
+    return orderData;
   }
 
   function handlePostMessage() {
+    const orderData = handleUserDeliveryInfo();
+    console.log(orderData);
+
     const url = SEND_ORDER_URL;
-    const data = {
-      //
-      // take out cart and userinfo, besides if user has valid coupon, we are going to reduce total amount, make that into a new obj and json.stringify it.
-    };
 
     fetch(url, {
-      method: "post",
-      body: JSON.stringify(data),
+      method: "POST",
+      body: JSON.stringify(orderData),
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log("data is sent");
+        console.log(data);
+        handleShow();
         // messageInputField.current.value = "";
         // empty all input area and localstorage
         // BLACKFRIDAY
@@ -147,14 +149,13 @@ export default function CustomerOrderForm({
           onClick={(e) => {
             e.preventDefault();
             // console.log(couponInput.current.value);
-            handleUserDeliveryInfo();
-            //handlePostMessage
+
+            handlePostMessage();
           }}
           /* onClick={() => {
             if (window.confirm("Are you sure you wish to delete this item?"))
               this.onCancel();
-          }}
-          onClick={handleShow} */
+          }}*/
         >
           Place Order
         </button>
@@ -171,7 +172,7 @@ export default function CustomerOrderForm({
             </Modal.Header>
             <Modal.Body>Woohoo, your order is submitted!</Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="primary" /* onClick={handleClose} */>
                 Go back home
               </Button>
             </Modal.Footer>

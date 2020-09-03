@@ -29,9 +29,9 @@ const ProductInfo = ({ isLoading, product }) => {
               <h5>Rating: {rating}/5</h5>
               <h5>Stock: {stock}</h5>
             </div>
-            <div className="col-sm">{description}</div>
+            <div className="col-sm mb-1">{description}</div>
           </div>
-          <BtnAddToCart id={id}/>              
+          <BtnAddToCart id={id} />
         </div>
       </div>
     </>

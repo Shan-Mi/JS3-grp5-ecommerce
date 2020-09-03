@@ -30,20 +30,23 @@ export default function CartDropDown() {
             />
           ))}
         </div>
-        <p className="font-weight-bold">
-          Total Price: {cartTotalPrice(cartItems)} SEK
-        </p>
-        <Link to="/checkout">
-          <button
-            className="btn btn-outline-dark"
-            onClick={() => {
-              toggleCartDisplay();
-            }}>
-            Go to Checkout
-          </button>
-        </Link>
+        <div className="cart-dropdown-btns-container">
+          <p className="font-weight-bold">
+            Total Price: {cartTotalPrice(cartItems)} SEK
+          </p>
+          <Link to="/checkout">
+            <button
+              className="btn btn-outline-dark"
+              onClick={() => {
+                toggleCartDisplay();
+              }}
+            >
+              Go to Checkout
+            </button>
+          </Link>
 
-        <BtnClearCart />
+          <BtnClearCart dropdownDelBtn={true} />
+        </div>
       </div>
     )
   );
