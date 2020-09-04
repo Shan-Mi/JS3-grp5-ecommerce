@@ -18,6 +18,7 @@ export default function CustomerOrderForm({
   const nameInput = useRef();
   const couponInput = useRef();
   const submitBtn = useRef();
+  const couponInfoArea = useRef();
   const SEND_ORDER_URL =
     "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/mrmisc.json";
 
@@ -56,6 +57,8 @@ export default function CustomerOrderForm({
     if (Object.keys(couponCodes).includes(value)) {
       setDiscountRate(couponCodes[value].discount);
     }
+    couponInfoArea.current.placeholder =
+      "Active code: Coupon Code is Not Valid";
   }
 
   function handleOnChange() {
@@ -87,9 +90,7 @@ export default function CustomerOrderForm({
             id="couponCheck"
             onClick={(e) => {
               e.preventDefault();
-
               isCouponValid(couponInput.current.value);
-
               if (discountRate !== 1) {
                 setDiscountRate(1);
                 couponInput.current.value = "";
@@ -102,6 +103,7 @@ export default function CustomerOrderForm({
           {couponInput.current !== undefined ? (
             <input
               type="text"
+              ref={couponInfoArea}
               readOnly
               placeholder={`Active code: ${couponInput.current.value}`}
               className="form-check-label col-5 align-middle border-0 text-right"
@@ -110,7 +112,7 @@ export default function CustomerOrderForm({
             <input
               type="text"
               readOnly
-              placeholder={`No valid coupon used`}
+              placeholder={`Not ready to accept coupon`}
               className="form-check-label col-5 align-middle border-0 text-right"
             />
           )}
