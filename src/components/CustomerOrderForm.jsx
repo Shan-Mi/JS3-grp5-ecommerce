@@ -59,7 +59,11 @@ export default function CustomerOrderForm({
   }
 
   function handleOnChange() {
-    if ( nameInput.current != null && nameInput.current.value.length >= 3 && cart.length !== 0) {
+    if (
+      nameInput.current != null &&
+      nameInput.current.value.length >= 3 &&
+      cart.length !== 0
+    ) {
       submitBtn.current.disabled = false;
     } else {
       submitBtn.current.disabled = true;
@@ -131,7 +135,7 @@ export default function CustomerOrderForm({
         </div>
         <button
           ref={submitBtn}
-          disabled={cart.length === 0 ? true : false}
+          disabled={nameInput.current || cart.length === 0 ? true : false}
           type="submit"
           className="btn btn-primary"
           variant="primary"
@@ -144,7 +148,7 @@ export default function CustomerOrderForm({
         </button>
       </form>
 
-     <Modal show={show} onHide={handleClose} animation={false}>
+      <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmation</Modal.Title>
         </Modal.Header>
@@ -154,7 +158,7 @@ export default function CustomerOrderForm({
             <Button variant="primary">Continue Shopping</Button>
           </Link>
         </Modal.Footer>
-      </Modal> 
+      </Modal>
     </div>
   );
 }

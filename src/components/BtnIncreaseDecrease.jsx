@@ -8,7 +8,7 @@ export default function BtnIncreaseDecrease({ quantity, id, isDisabled }) {
   const { cart, setCart, products } = useContext(ProductsContext);
 
   return (
-    <div>
+    <div className='d-flex'>
       <button
         className="btn"
         onClick={() => {

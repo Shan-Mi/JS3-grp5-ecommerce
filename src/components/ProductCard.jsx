@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import BtnAddToCart from "./BtnAddToCart";
 import "./ProductCard.styles.scss";
+import { ProductsContext } from "../contexts/GlobalContext";
+
 export default function ProductCard({
   imgURL,
   imgAlt,
@@ -10,9 +12,7 @@ export default function ProductCard({
   description,
   id,
 }) {
-  function truncate(str, n) {
-    return str.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
+  const { cart } = useContext(ProductsContext);
 
   return (
     <div className="col-md-4 text-center mb-2">
@@ -23,11 +23,16 @@ export default function ProductCard({
         <div className="card-body">
           <Link to={`/products/${id}`}>
             <h5 className="card-title m-3">{name}</h5>
-            {/* <p className="card-text">{truncate(description, 40)}</p> */}
             <p className="card-text ellipsis-text">{description}</p>
             <p className="card-text">{price} SEK</p>
           </Link>
-          <BtnAddToCart id={id} />
+          <BtnAddToCart
+            id={id}
+            isDisabled={
+              cart.filter(({ stock, quantity }) => stock == quantity)[0]?.id ==
+              id
+            }
+          />
         </div>
       </div>
     </div>
