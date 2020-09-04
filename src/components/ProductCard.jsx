@@ -29,8 +29,8 @@ export default function ProductCard({
           <BtnAddToCart
             id={id}
             isDisabled={
-              cart.filter(({ stock, quantity }) => stock == quantity)[0]?.id ==
-              id
+              cart.filter(({ stock, quantity }) => stock === quantity)[0]
+                ?.id === id
             }
           />
         </div>
