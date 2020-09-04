@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ProductListPage from "./pages/ProductListPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import Welcomepage from "./pages/WelcomePage";
 import LayoutSimple from "./components/LayoutSimple";
 import NotFoundPage from "./pages/NotFoundPage";
-import { ProductsContext } from "./contexts/GlobalContext";
 
 function App() {
-  const { cart } = useContext(ProductsContext);
-
   return (
     <div className="App">
       <Switch>
@@ -37,19 +34,11 @@ function App() {
           </LayoutSimple>
         </Route>
 
-        <Route
-          path="/checkout"
-          exact
-          render={() =>
-            cart.length === 0 ? (
-              <Redirect to="/products" />
-            ) : (
-              <LayoutSimple>
-                <CheckoutPage />
-              </LayoutSimple>
-            )
-          }
-        />
+        <Route path="/checkout" exact>
+          <LayoutSimple>
+            <CheckoutPage />
+          </LayoutSimple>
+        </Route>
 
         <Route path="*" component={NotFoundPage} />
       </Switch>

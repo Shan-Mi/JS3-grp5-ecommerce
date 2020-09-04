@@ -23,7 +23,8 @@ export default function ProductCard({
         <div className="card-body">
           <Link to={`/products/${id}`}>
             <h5 className="card-title m-3">{name}</h5>
-            <p className="card-text">{truncate(description, 40)}</p>
+            {/* <p className="card-text">{truncate(description, 40)}</p> */}
+            <p className="card-text ellipsis-text">{description}</p>
             <p className="card-text">{price} SEK</p>
           </Link>
           <BtnAddToCart id={id} />
