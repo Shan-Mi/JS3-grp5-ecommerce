@@ -82,6 +82,11 @@
   white-space: nowrap;
 }
 
-th, td {
+th,
+td {
   line-height: 38px;
+}
+
+tbody > tr > td > button {
+  margin-bottom: 5px;
 }

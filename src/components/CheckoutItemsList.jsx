@@ -99,6 +99,6 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
 const imageStyle = {
   float: "left",
   maxHeight: "30px",
-  marginTop: "3px",
+  marginTop: "5px",
   objectFit: "cover",
 };
