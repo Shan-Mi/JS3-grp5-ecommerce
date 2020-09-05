@@ -20,7 +20,7 @@ const ProductList = ({ isLoading }) => {
                 description={description}
                 imgURL={src.small}
                 imgAlt={alt}
-              ></ProductCard>
+              />
             );
           }
         )}

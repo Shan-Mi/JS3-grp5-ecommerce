@@ -5,8 +5,7 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import { cartTotalPrice } from "../components/utilities";
 
 export default function CheckoutPage() {
-  const ProductsData = useContext(ProductsContext);
-  const { cart: cartItems } = ProductsData;
+  const { cart: cartItems } = useContext(ProductsContext);
   const [discountPrice, setDiscountPrice] = useState(cartTotalPrice(cartItems));
   const [discountRate, setDiscountRate] = useState(1);
   return (
@@ -21,7 +20,6 @@ export default function CheckoutPage() {
         setDiscountRate={setDiscountRate}
         discountRate={discountRate}
         discountPrice={discountPrice}
-        setDiscountPrice={setDiscountPrice}
       />
     </div>
   );

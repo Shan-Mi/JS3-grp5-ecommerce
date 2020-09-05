@@ -11,7 +11,7 @@ const GlobalContext = ({ children }) => {
   const [products, reviews, couponCodes, isLoading] = useFetch(
     "https://mock-data-api.firebaseio.com/e-commerce.json",
     []
-  ); 
+  );
 
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));
@@ -28,7 +28,8 @@ const GlobalContext = ({ children }) => {
         setCart,
         showCart,
         setShowCart,
-      }}>
+      }}
+    >
       {children}
     </ProductsContext.Provider>
   );

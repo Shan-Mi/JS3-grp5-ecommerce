@@ -57,8 +57,10 @@ export default function CustomerOrderForm({
     if (Object.keys(couponCodes).includes(value)) {
       setDiscountRate(couponCodes[value].discount);
     }
-    couponInfoArea.current.placeholder =
-      "Active code: Coupon Code is Not Valid";
+    if (couponInfoArea.current !== undefined) {
+      couponInfoArea.current.placeholder =
+        "Active code: Coupon Code is Not Valid";
+    }
   }
 
   function handleOnChange() {

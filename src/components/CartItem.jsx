@@ -14,7 +14,8 @@ const CartItem = ({ alt, src, quantity, id, price }) => {
         to={`/products/${id}`}
         onClick={() => {
           toggleCartDisplay();
-        }}>
+        }}
+      >
         <img src={src.small} alt={alt} />
       </Link>
       <h5>

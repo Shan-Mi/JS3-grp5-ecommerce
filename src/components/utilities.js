@@ -53,7 +53,7 @@ export const deleteItemFromCart = (cartItems, cartItemToRemove) => {
 
 export const clearCart = (cartItems) => {
   // clear cart
-  return cartItems = [];
+  return (cartItems = []);
 };
 
 export const getCartItemsCount = (cartItems) => {
