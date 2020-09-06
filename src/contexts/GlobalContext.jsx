@@ -9,7 +9,7 @@ const GlobalContext = ({ children }) => {
   const initialCart = JSON.parse(window.localStorage.getItem("cart")) || [];
   const [cart, setCart] = useState(initialCart);
   const [showCart, setShowCart] = useState(false);
-  const [products, reviews, couponCodes, isLoading] = useFetch(FETCH_URL, []);
+  const [products, reviews, couponCodes, isLoading] = useFetch(FETCH_URL, [FETCH_URL]);
 
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));

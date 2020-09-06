@@ -15,6 +15,7 @@ export default function useFetch(url, dependencies) {
         if (!res.ok) {
           throw new Error("Failed to fetch");
         }
+        console.log("mounting");
         return res.json();
       })
       .then((result) => {
@@ -28,7 +29,10 @@ export default function useFetch(url, dependencies) {
 
   useEffect(() => {
     fetchData();
-    return () => abortCtrl.abort();
+    return () => {
+      console.log("unmounted");
+      abortCtrl.abort();
+    };
   }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [products, reviews, couponCodes, isLoading];
