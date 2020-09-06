@@ -54,7 +54,10 @@ export default function CustomerOrderForm({
   }
 
   function isCouponValid(value) {
-    if (Object.keys(couponCodes).includes(value)) {
+    if (
+      Object.keys(couponCodes).includes(value) &&
+      couponCodes[value].valid === true
+    ) {
       setDiscountRate(couponCodes[value].discount);
     }
     if (couponInfoArea.current !== undefined) {
