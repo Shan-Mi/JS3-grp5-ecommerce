@@ -6,13 +6,13 @@ import "./BtnClearCart.styles.scss";
 import { MdDeleteForever } from "react-icons/md";
 
 const BtnClearCart = ({ dropdownDelBtn }) => {
-  const { cart, setCart } = useContext(ProductsContext);
+  const { setCart } = useContext(ProductsContext);
 
   return dropdownDelBtn ? (
     <button
       className="btn dropdown-delBtn"
       onClick={() => {
-        setCart(clearCart(cart));
+        setCart(clearCart());
       }}
     >
       <MdDeleteForever />
@@ -21,7 +21,7 @@ const BtnClearCart = ({ dropdownDelBtn }) => {
     <button
       className="btn btn-outline-danger text-right"
       onClick={() => {
-        setCart(clearCart(cart));
+        setCart(clearCart());
       }}
     >
       <MdDeleteForever /> Clear Cart

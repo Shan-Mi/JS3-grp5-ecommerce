@@ -15,7 +15,7 @@ export default function useFetch(url, dependencies) {
         if (!res.ok) {
           throw new Error("Failed to fetch");
         }
-        console.log("mounting");
+        // console.log("mounting");
         return res.json();
       })
       .then((result) => {
@@ -30,7 +30,7 @@ export default function useFetch(url, dependencies) {
   useEffect(() => {
     fetchData();
     return () => {
-      console.log("unmounted");
+      // console.log("unmounted");
       abortCtrl.abort();
     };
   }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
