@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import WithSpinner from "./withSpinner/WithSpinner";
 import "./ProductInfo.styles.scss";
 import BtnAddToCart from "./BtnAddToCart";
+import { ProductsContext } from "../contexts/GlobalContext";
 
 const ProductInfo = ({ isLoading, product }) => {
   const {
@@ -13,7 +14,7 @@ const ProductInfo = ({ isLoading, product }) => {
     rating,
     stock,
   } = product;
-
+  const { cart } = useContext(ProductsContext);
   return (
     <>
       <div className="product-detail-container">
@@ -31,7 +32,13 @@ const ProductInfo = ({ isLoading, product }) => {
             </div>
             <div className="col-sm mb-1">{description}</div>
           </div>
-          <BtnAddToCart id={id} />
+          <BtnAddToCart
+            id={id}
+            isDisabled={
+              cart.filter(({ stock, quantity }) => stock === quantity)[0]
+                ?.id === id
+            }
+          />
         </div>
       </div>
     </>

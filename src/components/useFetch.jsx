@@ -30,7 +30,7 @@ export default function useFetch(url, dependencies) {
   useEffect(() => {
     fetchData();
     return () => {
-      // console.log("unmounted");
+      console.log("unmounted");
       abortCtrl.abort();
     };
   }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps

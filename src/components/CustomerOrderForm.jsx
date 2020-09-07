@@ -54,10 +54,7 @@ export default function CustomerOrderForm({
   }
 
   function isCouponValid(value) {
-    if (
-      Object.keys(couponCodes).includes(value) &&
-      couponCodes[value].valid === true
-    ) {
+    if (couponCodes[value].valid === true) {
       setDiscountRate(couponCodes[value].discount);
     }
     if (couponInfoArea.current !== undefined) {
@@ -68,7 +65,7 @@ export default function CustomerOrderForm({
 
   function handleOnChange() {
     if (
-      nameInput.current != null &&
+      nameInput.current &&
       nameInput.current.value.length >= 3 &&
       cart.length !== 0
     ) {
