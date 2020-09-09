@@ -3,11 +3,13 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import ProductCard from "./ProductCard";
 import WithSpinner from "./withSpinner/WithSpinner";
 
+import {ProductListContainer} from './ProductList.styles'
+
 const ProductList = ({ isLoading }) => {
   const { products } = useContext(ProductsContext);
 
   return (
-    <div className="row">
+    <ProductListContainer >
       {products &&
         Object.values(products).map(
           ({ id, name, price, description, images: [{ alt, src }] }) => {
@@ -24,7 +26,7 @@ const ProductList = ({ isLoading }) => {
             );
           }
         )}
-    </div>
+    </ProductListContainer>
   );
 };
 

@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import BtnAddToCart from "./BtnAddToCart";
-import "./ProductCard.styles.scss";
+// import "./ProductCard.styles.scss";
 import { ProductsContext } from "../contexts/GlobalContext";
+
+import { ProductCardContainer } from "./ProductCard.styles";
 
 export default function ProductCard({
   imgURL,
@@ -15,8 +17,8 @@ export default function ProductCard({
   const { cart } = useContext(ProductsContext);
 
   return (
-    <div className="col-md-4 text-center mb-2">
-      <div className="card h-100">
+    <ProductCardContainer>
+      <div className="card-w-100">
         <Link to={`/products/${id}`}>
           <img className="card-img-top" src={imgURL} alt={imgAlt} />
         </Link>
@@ -35,6 +37,6 @@ export default function ProductCard({
           />
         </div>
       </div>
-    </div>
+    </ProductCardContainer>
   );
 }

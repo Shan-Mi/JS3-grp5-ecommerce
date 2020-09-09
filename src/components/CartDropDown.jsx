@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
 import { cartTotalPrice } from "./utilities";
 import BtnClearCart from "./BtnClearCart";
+import { CartDropDownContainer } from "./LayoutSimple.styles";
 
 export default function CartDropDown() {
   const { cart: cartItems, showCart, setShowCart } = useContext(
@@ -17,7 +18,7 @@ export default function CartDropDown() {
   return (
     cartItems &&
     showCart && (
-      <div className="cart-dropdown-container">
+      <CartDropDownContainer>
         <div className="cart-items-container">
           {cartItems.map(({ images: [{ alt, src }], id, quantity, price }) => (
             <CartItem
@@ -44,10 +45,9 @@ export default function CartDropDown() {
               Go to Checkout
             </button>
           </Link>
-
           <BtnClearCart dropdownDelBtn={true} />
         </div>
-      </div>
+      </CartDropDownContainer>
     )
   );
 }

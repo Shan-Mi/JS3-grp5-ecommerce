@@ -1,4 +1,6 @@
-.product-detail-container {
+import styled from "styled-components";
+
+export const ProductDetailContainer = styled.div`
   display: flex;
   margin-top: 3rem;
   position: relative;
@@ -49,4 +51,4 @@
       margin-bottom: 4rem;
     }
   }
-}
+`;

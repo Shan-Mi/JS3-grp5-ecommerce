@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from "react";
 import { ProductsContext } from "../contexts/GlobalContext";
 import { Button, Modal } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { clearCart } from "./utilities";
 import { Link } from "react-router-dom";
 
@@ -49,7 +49,7 @@ export default function CustomerOrderForm({
       .then((data) => {
         handleShow();
         setCart(clearCart(cart));
-        // nameInput.current.value = "";
+        nameInput.current.value = "";
       });
   }
 

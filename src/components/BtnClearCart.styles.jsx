@@ -1,4 +1,6 @@
-.dropdown-delBtn {
+import styled from "styled-components";
+
+export const DropdownDelBtn = styled.div`
   place-self: center;
   margin-bottom: -1rem;
   padding: 0;
@@ -23,4 +25,10 @@
     }
     transition: transform 0.1s ease-in-out;
   }
-}
+`;
+
+export const CheckoutDelBtn = styled.div`
+  float: right;
+  cursor: pointer;
+  color: #dc3545;
+`;

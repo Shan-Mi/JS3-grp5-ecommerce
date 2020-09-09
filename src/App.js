@@ -8,9 +8,12 @@ import Welcomepage from "./pages/WelcomePage";
 import LayoutSimple from "./components/LayoutSimple";
 import NotFoundPage from "./pages/NotFoundPage";
 
+import { GlobalStyle } from "./GlobalStyle";
+
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
       <Switch>
         <Route path="/" exact>
           <LayoutSimple>

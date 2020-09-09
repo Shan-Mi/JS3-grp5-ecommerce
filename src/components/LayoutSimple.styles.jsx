@@ -1,13 +1,21 @@
-.btn {
-  position: relative;
+import styled from "styled-components";
 
-  .cart-count {
-    position: absolute;
-    top: 0;
-  }
-}
+export const MyButton = styled.button`
+  padding: 10px 20px;
+  background-color: #b8b8ff;
+  border-color: #b8b8ff;
+  font-size: 16px;
+`;
+// .btn {
+//   position: relative;
 
-.cart-dropdown-container {
+//   .cart-count {
+//     position: absolute;
+//     top: 0;
+//   }
+// }
+
+export const CartDropDownContainer = styled.div`
   position: absolute;
   right: 10px;
   top: 60px;
@@ -68,25 +76,48 @@
       padding: 0;
     }
   }
-}
+`;
 
-.stickyheader {
-  position: sticky !important;
-  top: 0 !important;
+export const HeaderContainer = styled.header`
+  position: sticky;
+  top: 0;
   z-index: 20;
-}
+  background-color: #ddd;
+  height: 4rem;
+  display: flex;
+  align-items: center;
 
-.ellipsis-text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
+  nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+    font-size: 24px;
 
-th,
-td {
-  line-height: 38px;
-}
+    a {
+      &:first-of-type {
+        margin-right: 2rem;
+      }
 
-tbody > tr > td > button {
-  margin-bottom: 5px;
-}
+      &:hover {
+        font-style: italic;
+        transition: font-style 200ms ease-in-out;
+      }
+    }
+  }
+`;
+
+// .ellipsis-text {
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+//   white-space: nowrap;
+// }
+
+// th,
+// td {
+//   line-height: 38px;
+// }
+
+// tbody > tr > td > button {
+//   margin-bottom: 5px;
+// }

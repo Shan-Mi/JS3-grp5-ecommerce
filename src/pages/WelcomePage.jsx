@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { MyButton } from "../components/LayoutSimple.styles";
+
+import { WelcomePageContainer } from "./WelcomePage.styles";
+
 const WelcomePage = () => {
   return (
-    <div>
+    <WelcomePageContainer>
       <h1>Welcome to our E-commerce shop!</h1>
       <Link to="/products">
-        <button className="btn btn-primary mt-5">Go to products page</button>
+        <MyButton>Go to products page</MyButton>
       </Link>
-    </div>
+    </WelcomePageContainer>
   );
 };
 

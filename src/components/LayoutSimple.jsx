@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import "./LayoutSimple.styles.scss";
+import "./LayoutSimple.styles.jsx";
 import { getCartItemsCount } from "./utilities";
 import { ProductsContext } from "../contexts/GlobalContext";
 import CartDropDown from "./CartDropDown";
 import { FaShoppingCart } from "react-icons/fa";
+
+import { HeaderContainer, MyButton } from "./LayoutSimple.styles";
 
 export default function LayoutSimple({ children }) {
   const { cart, showCart, setShowCart } = useContext(ProductsContext);
@@ -16,7 +18,7 @@ export default function LayoutSimple({ children }) {
 
   return (
     <div>
-      <header className="stickyheader">
+      <HeaderContainer>
         <nav className="navbar sticky-top navbar-light bg-light justify-content-between">
           <div>
             <Link to="/" className="navbar-brand">
@@ -36,7 +38,7 @@ export default function LayoutSimple({ children }) {
             <CartDropDown />
           </div>
         </nav>
-      </header>
+      </HeaderContainer>
       <div className="container">{children}</div>
     </div>
   );

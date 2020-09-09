@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import WithSpinner from "./withSpinner/WithSpinner";
-import "./ProductInfo.styles.scss";
+// import "./ProductInfo.styles.jsx";
 import BtnAddToCart from "./BtnAddToCart";
 import { ProductsContext } from "../contexts/GlobalContext";
+
+import { ProductDetailContainer } from "./ProductInfo.styles";
 
 const ProductInfo = ({ isLoading, product }) => {
   const {
@@ -17,7 +19,7 @@ const ProductInfo = ({ isLoading, product }) => {
   const { cart } = useContext(ProductsContext);
   return (
     <>
-      <div className="product-detail-container">
+      <ProductDetailContainer>
         <div className="product-detail-image">
           <img className="product-detail-img" src={src.medium} alt={alt} />
         </div>
@@ -40,7 +42,7 @@ const ProductInfo = ({ isLoading, product }) => {
             }
           />
         </div>
-      </div>
+      </ProductDetailContainer>
     </>
   );
 };
