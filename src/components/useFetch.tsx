@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
-export default function useFetch(url, dependencies) {
+
+// import IFetchedData from "../interfaces/fetchedData.interfaces";
+
+
+export default function useFetch(url:string, dependencies:[]) {
   const [products, setProducts] = useState({});
   const [reviews, setReviews] = useState({});
-  const [couponCodes, setCouponCodes] = useState({});
+  const [couponCodes, setCouponCodes] = useState({})
   const [isLoading, setIsLoading] = useState(true);
+
   const abortCtrl = new AbortController();
   const opts = { signal: abortCtrl.signal };
+
   function fetchData() {
     fetch(url, opts)
       .then((res) => {
@@ -23,12 +29,14 @@ export default function useFetch(url, dependencies) {
       })
       .catch((error) => console.error(error.message));
   }
+
   useEffect(() => {
     fetchData();
     return () => {
       console.log("unmounted");
       abortCtrl.abort();
     };
-  }, dependencies); 
+  }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
+
   return [products, reviews, couponCodes, isLoading];
 }
