@@ -1,15 +1,15 @@
 // här lagras alla produkter som kunden lägger i cart
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, ReactNode } from "react";
 import useFetch from "../components/useFetch";
 
-interface ContextProps {
-  children: any;
-}
+type Props = {
+  children: ReactNode;
+};
 
 //eslint-disable-next-line
 export const ProductsContext = createContext({});
 
-const GlobalContext = (props: ContextProps) => {
+const GlobalContext = (props: Props) => {
   const FETCH_URL = "https://mock-data-api.firebaseio.com/e-commerce.json";
   const initialCart: [] = JSON.parse(localStorage.getItem("cart")!) || [];
   const [cart, setCart] = useState(initialCart);

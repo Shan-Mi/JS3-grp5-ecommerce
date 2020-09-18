@@ -1,11 +1,6 @@
-interface ICartItem {
-  id: number;
-  stock: number;
-  quantity: number;
-  price: number;
-}
+import ICartItem from "../interfaces/cartitem.interface";
 
-export const cartTotalPrice = (cartItems: [ICartItem]) => {
+export const cartTotalPrice = (cartItems: ICartItem[]) => {
   return cartItems
     .map(({ quantity, price }) => quantity * price)
     .reduce((sum, init) => sum + init, 0);
@@ -13,9 +8,9 @@ export const cartTotalPrice = (cartItems: [ICartItem]) => {
 
 /* functions for cart: adding/ deleting/ emptying */
 export const addItemToCart = (
-  cartItems: [ICartItem],
+  cartItems: Array<ICartItem>,
   cartItemToAdd: ICartItem
-) => {
+): Array<ICartItem> => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToAdd.id
   );
@@ -32,7 +27,7 @@ export const addItemToCart = (
 };
 
 export const removeItemFromCart = (
-  cartItems: [ICartItem],
+  cartItems: Array<ICartItem>,
   cartItemToRemove: ICartItem
 ) => {
   const existingCartItem = cartItems.find(
@@ -53,7 +48,7 @@ export const removeItemFromCart = (
 };
 
 export const deleteItemFromCart = (
-  cartItems: [ICartItem],
+  cartItems: Array<ICartItem>,
   cartItemToRemove: ICartItem
 ) => {
   // delete from cart
@@ -62,7 +57,7 @@ export const deleteItemFromCart = (
 
 export const clearCart = () => [];
 
-export const getCartItemsCount = (cartItems: [ICartItem]) => {
+export const getCartItemsCount = (cartItems: Array<ICartItem>) => {
   return cartItems
     .map((cartItem) => cartItem.quantity)
     .reduce((sum, init) => sum + init, 0);
