@@ -11,11 +11,11 @@ interface IClearBtn {
   setCart: React.Dispatch<React.SetStateAction<null[]>>;
 }
 
-interface Props {
+interface IProps {
   dropdownDelBtn: boolean;
 }
 
-const BtnClearCart = ({ dropdownDelBtn }: Props) => {
+const BtnClearCart: React.FC<IProps> = ({ dropdownDelBtn }: IProps) => {
   const globalContext = useContext(ProductsContext);
   const { setCart } = globalContext as IClearBtn;
 

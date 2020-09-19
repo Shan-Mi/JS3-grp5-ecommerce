@@ -4,13 +4,34 @@ import { Button, Modal } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { clearCart } from "./utilities";
 import { Link } from "react-router-dom";
+import ICart from "../interfaces/cartitem.interface";
 
-export default function CustomerOrderForm({
+interface IProps {
+  discountPrice: number;
+  setDiscountRate: React.Dispatch<React.SetStateAction<number>>;
+  discountRate: number;
+}
+
+interface IContext {
+  cart: [];
+  couponCodes: Coupon<CouponType>;
+  setCart: React.Dispatch<React.SetStateAction<null[]>>;
+}
+
+interface Coupon<T> {
+  [key: string]: T;
+}
+
+type CouponType = { discount: number; valid: boolean };
+
+const CustomerOrderForm = ({
   discountPrice,
   setDiscountRate,
   discountRate,
-}) {
-  const { cart, couponCodes, setCart } = useContext(ProductsContext);
+}: IProps) => {
+  const { cart, couponCodes, setCart } = useContext(
+    ProductsContext
+  ) as IContext;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -23,18 +44,23 @@ export default function CustomerOrderForm({
     "https://mock-data-api.firebaseio.com/e-commerce/orders/group5/mrmisc.json";
 
   function handleUserDeliveryInfo() {
-    const nameValue = nameInput.current.value;
-    const couponValue = couponInput.current.value;
-    const orderData = {
-      ...data,
-      username: nameValue,
-      coupon: couponValue,
-      price: discountPrice,
-      discountRate: discountRate,
-      finalPrice: (discountPrice * discountRate).toFixed(2),
-    };
+    if (
+      nameInput.current !== "undefined" &&
+      couponInput.current !== undefined
+    ) {
+      const nameValue = nameInput.current.value;
+      const couponValue = couponInput.current.value;
+      const orderData = {
+        ...data,
+        username: nameValue,
+        coupon: couponValue,
+        price: discountPrice,
+        discountRate: discountRate,
+        finalPrice: (discountPrice * discountRate).toFixed(2),
+      };
 
-    return orderData;
+      return orderData;
+    }
   }
 
   function handlePostMessage() {
@@ -48,12 +74,12 @@ export default function CustomerOrderForm({
       .then((res) => res.json())
       .then((data) => {
         handleShow();
-        setCart(clearCart(cart));
+        setCart(clearCart([]));
         nameInput.current.value = "";
       });
   }
 
-  function isCouponValid(value) {
+  function isCouponValid(value: string) {
     if (couponCodes[value]?.valid === true) {
       setDiscountRate(couponCodes[value].discount);
     }
@@ -165,4 +191,6 @@ export default function CustomerOrderForm({
       </Modal>
     </div>
   );
-}
+};
+
+export default CustomerOrderForm;

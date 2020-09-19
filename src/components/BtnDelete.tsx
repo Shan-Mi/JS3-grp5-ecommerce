@@ -7,11 +7,11 @@ import ICartItem from "../interfaces/cartitem.interface";
 
 import IChangeQtyBtn, { Products } from "../interfaces/changeQtyBtn.interface";
 
-interface Props {
+interface IProps {
   id: number;
 }
 
-export default function BtnDelete({ id }: Props) {
+const BtnDelete: React.FC<IProps> = ({ id }: IProps) => {
   const GlobalContext = useContext(ProductsContext);
   const { cart, setCart, products } = GlobalContext as IChangeQtyBtn;
 
@@ -25,4 +25,6 @@ export default function BtnDelete({ id }: Props) {
       <FaTrashAlt />
     </button>
   );
-}
+};
+
+export default BtnDelete;

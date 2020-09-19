@@ -5,24 +5,66 @@ import BtnIncreaseDecrease from "./BtnIncreaseDecrease";
 import BtnDelete from "./BtnDelete";
 import BtnClearCart from "./BtnClearCart";
 import { Link } from "react-router-dom";
+import { StringLiteral } from "typescript";
 
-export default function CheckoutItemsList({ discountPrice, discountRate }) {
-  const ProductsData = useContext(ProductsContext);
-  const { cart: cartItems, products } = ProductsData;
+interface ICheckoutItemsList {
+  products: Products<ICartItem>;
+  cart: [];
+}
+
+interface Products<T> {
+  [key: number]: T;
+}
+
+interface IProps {
+  discountPrice: number;
+  discountRate: number;
+}
+
+interface ICartItem {
+  quantity: number;
+  id: number;
+  price: number;
+  name: string;
+  stock: number;
+  images: [
+    {
+      alt: string;
+      src: { small: string };
+    }
+  ];
+}
+
+const CheckoutItemsList = ({ discountPrice, discountRate }: IProps) => {
+  const { cart: cartItems, products } = useContext(
+    ProductsContext
+  ) as ICheckoutItemsList;
 
   function renderTableRows() {
     return (
       cartItems &&
       products &&
       cartItems.map(
-        ({ id, name, price, quantity, images: [{ alt, src }] }, index) => (
+        (
+          { id, name, price, quantity, images: [{ alt, src }] }: ICartItem,
+          index
+        ) => (
           <tr key={id}>
             <td>
               <BtnDelete id={id} />
             </td>
             <th scope="row">{index + 1}</th>
             <th scope="row">
-              <img src={src.small} alt={alt} style={imageStyle} />
+              <img
+                src={src.small}
+                alt={alt}
+                style={{
+                  float: "left",
+                  maxHeight: "30px",
+                  marginTop: "5px",
+                  objectFit: "cover",
+                }}
+              />
             </th>
             <td>
               <Link to={`/products/${id}`}>{name}</Link>
@@ -48,8 +90,8 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
       <table className="table table-sm table-hover ">
         <thead className="text-left">
           <tr>
-            <th colSpan="6" className="text-right">
-              <BtnClearCart />
+            <th className="text-right">
+              <BtnClearCart dropdownDelBtn />
             </th>
           </tr>
           <tr>
@@ -66,7 +108,7 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
         <tbody className="text-left">{cartItems && renderTableRows()}</tbody>
         <tfoot>
           <tr>
-            <td colSpan="6" className="text-right font-weight-bold">
+            <td className="text-right font-weight-bold">
               {discountRate !== 1 ? (
                 <small>
                   <span className="discount-price mr-5">
@@ -90,11 +132,13 @@ export default function CheckoutItemsList({ discountPrice, discountRate }) {
       </table>
     </div>
   );
-}
-
-const imageStyle = {
-  float: "left",
-  maxHeight: "30px",
-  marginTop: "5px",
-  objectFit: "cover",
 };
+
+// const imageStyle = {
+//   float: "left",
+//   maxHeight: "30px",
+//   marginTop: "5px",
+//   objectFit: "cover",
+// };
+
+export default CheckoutItemsList;

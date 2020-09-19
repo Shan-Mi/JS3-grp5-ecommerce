@@ -12,13 +12,13 @@ interface ICartDropdown {
 }
 
 interface ICartItem {
-  images: [{ alt: string; src: string }];
+  images: [{ alt: string; src: { small: string } }];
   id: number;
   quantity: number;
   price: number;
 }
 
-export default function CartDropDown() {
+const CartDropDown = () => {
   const globalContext = useContext(ProductsContext);
   const {
     cart: cartItems,
@@ -67,4 +67,6 @@ export default function CartDropDown() {
       </CartDropDownContainer>
     )
   );
-}
+};
+
+export default CartDropDown;

@@ -6,12 +6,17 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 
 import IChangeQtyBtn, { Products } from "../interfaces/changeQtyBtn.interface";
 
-interface Props {
+interface IProps {
   quantity: number;
   id: number;
   isDisabled: boolean;
 }
-export default function BtnIncreaseDecrease({ quantity, id, isDisabled }: Props) {
+
+const BtnIncreaseDecrease: React.FC<IProps> = ({
+  quantity,
+  id,
+  isDisabled,
+}: IProps) => {
   const globalContext = useContext(ProductsContext);
   const { cart, setCart, products } = globalContext as IChangeQtyBtn;
 
@@ -37,4 +42,6 @@ export default function BtnIncreaseDecrease({ quantity, id, isDisabled }: Props)
       </button>
     </div>
   );
-}
+};
+
+export default BtnIncreaseDecrease;

@@ -6,14 +6,14 @@ import { AddToCartBtn } from "./BtnAddToCart.styles";
 import IGlobalContext from "../interfaces/globalContext.interfaces";
 import ICartItem from "../interfaces/cartitem.interface";
 
-interface Props {
+interface IProps {
   id: number;
   isDisabled: boolean;
 }
 
 import IChangeQtyBtn, { Products } from "../interfaces/changeQtyBtn.interface";
 
-const BtnAddToCart: React.FC<Props> = ({ id, isDisabled } : Props) => {
+const BtnAddToCart: React.FC<IProps> = ({ id, isDisabled }: IProps) => {
   const globalContext = useContext(ProductsContext);
   const { cart, setCart, products } = globalContext as IChangeQtyBtn;
   const currentCartItems: ICartItem[] = addItemToCart(cart, products[id]);

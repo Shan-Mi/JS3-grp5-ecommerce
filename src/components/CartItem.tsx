@@ -2,8 +2,27 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductsContext } from "../contexts/GlobalContext";
 
-const CartItem = ({ alt, src, quantity, id, price }) => {
-  const { showCart, setShowCart } = useContext(ProductsContext);
+interface ICartItem {
+  showCart: boolean;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface IProps {
+  alt: string;
+  src: { small: string };
+  quantity: number;
+  id: number;
+  price: number;
+}
+
+const CartItem: React.FC<IProps> = ({
+  alt,
+  src,
+  quantity,
+  id,
+  price,
+}: IProps) => {
+  const { showCart, setShowCart } = useContext(ProductsContext) as ICartItem;
 
   function toggleCartDisplay() {
     setShowCart(!showCart);
