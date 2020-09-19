@@ -55,7 +55,7 @@ export const deleteItemFromCart = (
   return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
 };
 
-export const clearCart = () => [];
+export const clearCart = (cart: Array<ICartItem>) =>([null]);
 
 export const getCartItemsCount = (cartItems: Array<ICartItem>) => {
   return cartItems
