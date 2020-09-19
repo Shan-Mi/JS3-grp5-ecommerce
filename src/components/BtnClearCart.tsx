@@ -15,12 +15,10 @@ interface Props {
   dropdownDelBtn: boolean;
 }
 
-const BtnClearCart = (props: Props) => {
+const BtnClearCart = ({ dropdownDelBtn }: Props) => {
   const globalContext = useContext(ProductsContext);
   const { setCart } = globalContext as IClearBtn;
 
-  const { dropdownDelBtn } = props;
-  
   return dropdownDelBtn ? (
     <DropdownDelBtn
       onClick={() => {

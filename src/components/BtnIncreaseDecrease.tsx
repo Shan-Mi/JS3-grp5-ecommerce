@@ -4,8 +4,16 @@ import { ProductsContext } from "../contexts/GlobalContext";
 import { addItemToCart, removeItemFromCart } from "./utilities";
 import { FaPlus, FaMinus } from "react-icons/fa";
 
-export default function BtnIncreaseDecrease({ quantity, id, isDisabled }) {
-  const { cart, setCart, products } = useContext(ProductsContext);
+import IChangeQtyBtn, { Products } from "../interfaces/changeQtyBtn.interface";
+
+interface Props {
+  quantity: number;
+  id: number;
+  isDisabled: boolean;
+}
+export default function BtnIncreaseDecrease({ quantity, id, isDisabled }: Props) {
+  const globalContext = useContext(ProductsContext);
+  const { cart, setCart, products } = globalContext as IChangeQtyBtn;
 
   return (
     <div className="d-flex">

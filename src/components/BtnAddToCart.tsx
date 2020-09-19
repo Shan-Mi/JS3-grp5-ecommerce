@@ -11,21 +11,12 @@ interface Props {
   isDisabled: boolean;
 }
 
-interface IAddBtn {
-  products: Products<ICartItem>;
-  cart: [];
-  setCart: React.Dispatch<React.SetStateAction<ICartItem[]>>;
-}
+import IChangeQtyBtn, { Products } from "../interfaces/changeQtyBtn.interface";
 
-interface Products<T>{
-  [key: number]:T
-}
-
-const BtnAddToCart: React.FC<Props> = (props: Props) => {
+const BtnAddToCart: React.FC<Props> = ({ id, isDisabled } : Props) => {
   const globalContext = useContext(ProductsContext);
-  const { cart, setCart, products } = globalContext as IAddBtn;
-  const { id, isDisabled } = props;
-  const currentCartItems:ICartItem[] = addItemToCart(cart, products[id])
+  const { cart, setCart, products } = globalContext as IChangeQtyBtn;
+  const currentCartItems: ICartItem[] = addItemToCart(cart, products[id]);
 
   return (
     <AddToCartBtn
