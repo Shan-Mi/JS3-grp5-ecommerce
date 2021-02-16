@@ -2,7 +2,7 @@
 
 ## Name: Mr Misc
 ### [Demo-live-version](https://mrmisc-live.herokuapp.com/)
-
+![landing-page](./img/landing.png)
 ### Tools and etc
 - create-react-app
 - React-router-dom
